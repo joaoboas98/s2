@@ -33,13 +33,10 @@ public class utilizador {
 
         } else if (modelInstance.getUtilizadorTipo().equals(BigDecimal.ONE)) {
             System.out.println("utilizador");
-            if (modelInstance.getUtilizadorId() == null) {
-                System.out.println("Novo Utilizador");
-                mview = new ModelAndView("home");
-                mview.addObject("utilizador", modelInstance);
+            mview = new ModelAndView("home");
+            mview.addObject("utilizador", modelInstance);
+            mview.addObject("msg", msg);
 
-                mview.addObject("msg", msg);
-            }
         } else if (modelInstance.getUtilizadorTipo().equals(BigDecimal.ZERO)) {
             System.out.println("Admi");
             mview = new ModelAndView("home");

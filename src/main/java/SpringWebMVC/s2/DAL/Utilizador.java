@@ -47,7 +47,7 @@ public class Utilizador implements Serializable {
     @Column(name = "UTILIZADOR_NOME")
     private String utilizadorNome;
     @Column(name = "UTILIZADOR_TIPO")
-    private Short utilizadorTipo;
+    private BigDecimal utilizadorTipo;
     @Basic(optional = false)
     @Column(name = "UTILIZADOR_MORADA")
     private String utilizadorMorada;
@@ -103,11 +103,11 @@ public class Utilizador implements Serializable {
         this.utilizadorNome = utilizadorNome;
     }
 
-    public Short getUtilizadorTipo() {
+    public BigDecimal getUtilizadorTipo() {
         return utilizadorTipo;
     }
 
-    public void setUtilizadorTipo(Short utilizadorTipo) {
+    public void setUtilizadorTipo(BigDecimal utilizadorTipo) {
         this.utilizadorTipo = utilizadorTipo;
     }
 
