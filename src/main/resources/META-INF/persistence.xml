@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="JPA" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+    <class>SpringWebMVC.s2.DAL.Trilho</class>
+    <class>SpringWebMVC.s2.DAL.Guia</class>
+    <class>SpringWebMVC.s2.DAL.Ponto</class>
+    <class>SpringWebMVC.s2.DAL.ClassAlo</class>
+    <class>SpringWebMVC.s2.DAL.PagamentoExcursao</class>
+    <class>SpringWebMVC.s2.DAL.Grupo</class>
+    <class>SpringWebMVC.s2.DAL.FotoTrilho</class>
+    <class>SpringWebMVC.s2.DAL.ClassTrilho</class>
+    <class>SpringWebMVC.s2.DAL.Excursao</class>
+    <class>SpringWebMVC.s2.DAL.Alojamento</class>
+    <class>SpringWebMVC.s2.DAL.FotoAlojamento</class>
+    <class>SpringWebMVC.s2.DAL.FotoPonto</class>
+    <class>SpringWebMVC.s2.DAL.Utilizador</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
+      <property name="javax.persistence.jdbc.user" value="joao"/>
+      <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
+      <property name="javax.persistence.jdbc.password" value="12345"/>
+    </properties>
+  </persistence-unit>
+</persistence>
