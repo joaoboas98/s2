@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Controller
@@ -30,7 +31,7 @@ public class utilizador {
             mview.addObject("msg", msg);
             System.out.println("null");
 
-        } else if (modelInstance.getUtilizadorTipo().equals(1)) {
+        } else if (modelInstance.getUtilizadorTipo().equals(BigDecimal.ONE)) {
             System.out.println("utilizador");
             if (modelInstance.getUtilizadorId() == null) {
                 System.out.println("Novo Utilizador");
@@ -39,8 +40,8 @@ public class utilizador {
 
                 mview.addObject("msg", msg);
             }
-        } else if (modelInstance.getUtilizadorTipo().equals(0)) {
-            System.out.println("Admin");
+        } else if (modelInstance.getUtilizadorTipo().equals(BigDecimal.ZERO)) {
+            System.out.println("Admi");
             mview = new ModelAndView("home");
             mview.addObject("utilizador", modelInstance);
             mview.addObject("msg", msg);
