@@ -23,7 +23,7 @@ public class utilizador {
             msg = "Credenciais erradas!";
             mview = new ModelAndView("home");
             mview.addObject("msg", msg);
-            System.out.println("null");
+            System.out.println("null2");
 
         }
 
