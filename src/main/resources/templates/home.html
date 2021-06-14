@@ -1,4 +1,5 @@
-<html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
@@ -33,11 +34,12 @@
     </style>
 </head>
 <body>
+<p th:text="${utilizador.getUtilizadorId()}"></p>
 
 <div class="topnav">
     <a class="active" href="#home">Home</a>
-    <a href="#news">Trilhos</a>
-    <a href="#about">Pontos de Interesse</a>
+    <a href="#" onclick="goToTrilhos()">Trilhos</a>
+    <a href="#" onclick="logout()">Pontos de Interesse</a>
     <a href="#contact">Alojamentos</a>
     <a href="#about">About</a>
 
@@ -47,6 +49,17 @@
     <h2>Fotos Alojamentos</h2>
     <p>Some content..</p>
 </div>
-
 </body>
+<script>
+
+    function logout(){
+        document.body.innerHTML += '<form id="dynForm" action="/logout" method="post"></form>';
+        document.getElementById("dynForm").submit();
+    }
+
+    function goToTrilhos(){
+        document.body.innerHTML += '<form id="dynForm" action="/trilho" method="post"><input type="hidden" name="idU"></form>';
+        document.getElementById("dynForm").submit();
+    }
+</script>
 </html>
