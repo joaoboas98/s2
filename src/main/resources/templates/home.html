@@ -1,65 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Pelos Caminhos de Portugal</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    * {box-sizing: border-box}
+    .mySlides1, .mySlides2 {display: none}
+    img {vertical-align: middle;}
 
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        .topnav {
-            overflow: hidden;
-            background-color: #333;
-        }
-
-        .topnav a {
-            float: left;
-            color: #f2f2f2;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-            font-size: 17px;
-        }
-
-        .topnav a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-
-        .topnav a.active {
-            background-color: #04AA6D;
-            color: white;
-        }
-    </style>
-</head>
-<body>
-<p th:text="${utilizador.getUtilizadorId()}"></p>
-
-<div class="topnav">
-    <a class="active" href="#home">Home</a>
-    <a href="#" onclick="goToTrilhos()">Trilhos</a>
-    <a href="#" onclick="logout()">Pontos de Interesse</a>
-    <a href="#contact">Alojamentos</a>
-    <a href="#about">About</a>
-
-</div>
-
-<div style="padding-left:16px">
-    <h2>Fotos Alojamentos</h2>
-    <p>Some content..</p>
-</div>
-</body>
-<script>
-
-    function logout(){
-        document.body.innerHTML += '<form id="dynForm" action="/logout" method="post"></form>';
-        document.getElementById("dynForm").submit();
+    /* Slideshow container */
+    .slideshow-container {
+        max-width: 1000px;
+        position: relative;
+        margin: auto;
     }
 
-    function goToTrilhos(){
-        document.body.innerHTML += '<form id="dynForm" action="/trilho" method="post"><input type="hidden" name="idU"></form>';
-        document.getElementById("dynForm").submit();
+    /* Next & previous buttons */
+    .prev, .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        padding: 16px;
+        margin-top: -22px;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+    }
+
+    /* Position the "next button" to the right */
+    .next {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+    }
+
+    /* On hover, add a grey background color */
+    .prev:hover, .next:hover {
+        background-color: #f1f1f1;
+        color: black;
+    }
+    body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+    .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+    .fa-anchor,.fa-coffee {font-size:200px}
+</style>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+    <div class="w3-bar w3-green w3-card w3-left-align w3-large">
+        <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-green" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+        <a href="#" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
+        <a href="/trilho"  class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white " id="trilho" action="/trilho">Trilhos</a>
+        <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Alojamento</a>
+        <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Pontos de Interesse</a>
+        <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Excursão</a>
+    </div>
+
+    <!-- Navbar on small screens -->
+    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+        <a href="#" class="w3-bar-item w3-button w3-padding-large">Trilhos</a>
+        <a href="#" class="w3-bar-item w3-button w3-padding-large">Alojamento</a>
+        <a href="#" class="w3-bar-item w3-button w3-padding-large">Pontos de Interesse</a>
+        <a href="#" class="w3-bar-item w3-button w3-padding-large">Excursão</a>
+    </div>
+</div>
+
+<!-- Header -->
+<header class="w3-container w3-green " >
+    <link
+            rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"
+            integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V"
+            crossorigin="anonymous"
+    />
+
+    <div class="slideshow-container">
+        <div class="mySlides1">
+            <img src="https://www.revistarua.pt/wp-content/uploads/2020/07/Trilhos_RUA_11-1200x801.jpg" style="width:100%">
+        </div>
+
+        <div class="mySlides1">
+            <img src="https://apis.infoportugal.info/cms-media/articles/3c/82/Natureza_a_Descoberta_dos_Trilhos_e_Serras_de_Montalegre_2.jpg"style="width:100%" >
+        </div>
+
+        <div class="mySlides1">
+            <img src="https://www.olailhascanarias.com/sites/default/files/resource/type/trail_1.jpg" style="width:100%">
+        </div>
+
+        <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
+    </div>
+
+
+
+
+    </div>
+</header>
+
+<!-- First Grid -->
+<div class="w3-row-padding w3-padding-64 w3-container">
+    <div class="w3-content">
+        <div class="w3-twothird">
+            <h1>Trilhos </h1>
+            <h5 class="w3-padding-32">Temos de confessar. Somos, cada vez mais, adeptos do Turismo de Natureza e andamos sempre à procura de novos trilhos para percorrer a pé.</h5>
+
+            <p class="w3-text-grey">Até porque, desde que percorremos o Caminho de Santiago, o trekking tornou-se a nossa actividade desportiva de eleição. Adoramos calçar as nossas botas pegar na mochila, fazer log off das redes sociais e partir à descoberta de um bom trilho. E de pouco nos interessa se esses trilhos ou percursos pedestres estão do outro lado do planeta ou a trinta minutos de casa. O que interessa mesmo é poder respirar fundo, estar em comunhão com a natureza e sentir aquela tranquilidade ímpar que nos alimenta a alma. E acreditem, temos encontrado verdadeiras pérolas bem pertinho de nós. Nesta secção do nossa Página partilhamos alguns dos nossos trilhos e actividades outdoors favoritas. Desde os pequenos percursos pedestres, perfeitos para se fazer num dia, às grandes rotas que permitem vários dias de caminhadas. Garantimos que todos estes trilhos têm vários pontos em comum: permitem-nos desconectar de um mundo sempre conectado, estar em comunhão com a natureza, descobrir lugares perdidos no tempo e desfrutar de alguns dos mais belos quadros pintados pela Mãe Natureza.Venha daí connosco “Into the Wild”!</p>
+        </div>
+
+        <div class="w3-third w3-center ">
+            <br>
+            <br>
+            <br>
+            <br>
+            <i class="fas fa-hiking fa-10x 3-padding-64 w3-text-black w3-margin-right "></i>
+        </div>
+    </div>
+</div>
+
+<!-- Second Grid -->
+<div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
+    <div class="w3-content">
+        <div class="w3-third w3-center ">
+            <br>
+            <br>
+            <br>
+            <br>
+            <i class="fas fa-bed fa-10x 3-padding-64 w3-text-black w3-margin-right "></i>
+        </div>
+
+        <div class="w3-twothird">
+            <h1>Alojamento</h1>
+            <h5 class="w3-padding-32">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h5>
+
+            <p class="w3-text-grey">Até porque, desde que percorremos o Caminho de Santiago, o trekking tornou-se a nossa actividade desportiva de eleição. Adoramos calçar as nossas botas pegar na mochila, fazer log off das redes sociais e partir à descoberta de um bom trilho. E de pouco nos interessa se esses trilhos ou percursos pedestres estão do outro lado do planeta ou a trinta minutos de casa. O que interessa mesmo é poder respirar fundo, estar em comunhão com a natureza e sentir aquela tranquilidade ímpar que nos alimenta a alma. E acreditem, temos encontrado verdadeiras pérolas bem pertinho de nós. Nesta secção do nossa Página partilhamos alguns dos nossos trilhos e actividades outdoors favoritas. Desde os pequenos percursos pedestres, perfeitos para se fazer num dia, às grandes rotas que permitem vários dias de caminhadas. Garantimos que todos estes trilhos têm vários pontos em comum: permitem-nos desconectar de um mundo sempre conectado, estar em comunhão com a natureza, descobrir lugares perdidos no tempo e desfrutar de alguns dos mais belos quadros pintados pela Mãe Natureza.Venha daí connosco “Into the Wild”!</p>
+        </div>
+    </div>
+</div>
+<!-- First Grid -->
+<div class="w3-row-padding w3-padding-64 w3-container">
+    <div class="w3-content">
+        <div class="w3-twothird">
+            <h1>Pontos de Interesse</h1>
+            <h5 class="w3-padding-32">Temos de confessar. Somos, cada vez mais, adeptos do Turismo de Natureza e andamos sempre à procura de novos trilhos para percorrer a pé.</h5>
+
+            <p class="w3-text-grey">Até porque, desde que percorremos o Caminho de Santiago, o trekking tornou-se a nossa actividade desportiva de eleição. Adoramos calçar as nossas botas pegar na mochila, fazer log off das redes sociais e partir à descoberta de um bom trilho. E de pouco nos interessa se esses trilhos ou percursos pedestres estão do outro lado do planeta ou a trinta minutos de casa. O que interessa mesmo é poder respirar fundo, estar em comunhão com a natureza e sentir aquela tranquilidade ímpar que nos alimenta a alma. E acreditem, temos encontrado verdadeiras pérolas bem pertinho de nós. Nesta secção do nossa Página partilhamos alguns dos nossos trilhos e actividades outdoors favoritas. Desde os pequenos percursos pedestres, perfeitos para se fazer num dia, às grandes rotas que permitem vários dias de caminhadas. Garantimos que todos estes trilhos têm vários pontos em comum: permitem-nos desconectar de um mundo sempre conectado, estar em comunhão com a natureza, descobrir lugares perdidos no tempo e desfrutar de alguns dos mais belos quadros pintados pela Mãe Natureza.Venha daí connosco “Into the Wild”!</p>
+        </div>
+
+        <div class="w3-third w3-center ">
+            <br>
+            <br>
+            <br>
+            <br>
+            <i class="fas fa-map-marked-alt fa-10x 3-padding-64 w3-text-black w3-margin-right "></i>
+        </div>
+    </div>
+</div>
+<!-- Second Grid -->
+<div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
+    <div class="w3-content">
+        <div class="w3-third w3-center">
+            <br>
+            <br>
+            <br>
+            <br>
+            <i class="fas fa-route fa-10x 3-padding-64 w3-text-black w3-margin-right "></i>
+        </div>
+
+        <div class="w3-twothird">
+            <h1>Excursão</h1>
+            <h5 class="w3-padding-32">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h5>
+
+            <p class="w3-text-grey">Até porque, desde que percorremos o Caminho de Santiago, o trekking tornou-se a nossa actividade desportiva de eleição. Adoramos calçar as nossas botas pegar na mochila, fazer log off das redes sociais e partir à descoberta de um bom trilho. E de pouco nos interessa se esses trilhos ou percursos pedestres estão do outro lado do planeta ou a trinta minutos de casa. O que interessa mesmo é poder respirar fundo, estar em comunhão com a natureza e sentir aquela tranquilidade ímpar que nos alimenta a alma. E acreditem, temos encontrado verdadeiras pérolas bem pertinho de nós. Nesta secção do nossa Página partilhamos alguns dos nossos trilhos e actividades outdoors favoritas. Desde os pequenos percursos pedestres, perfeitos para se fazer num dia, às grandes rotas que permitem vários dias de caminhadas. Garantimos que todos estes trilhos têm vários pontos em comum: permitem-nos desconectar de um mundo sempre conectado, estar em comunhão com a natureza, descobrir lugares perdidos no tempo e desfrutar de alguns dos mais belos quadros pintados pela Mãe Natureza.Venha daí connosco “Into the Wild”!</p>
+        </div>
+    </div>
+</div>
+<div class="w3-container w3-black w3-center w3-opacity w3-padding-64">
+    <h1 class="w3-margin w3-xlarge">Trekking is life</h1>
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity">
+
+
+</footer>
+
+<script>
+    var slideIndex = [1,1];
+    var slideId = ["mySlides1", "mySlides2"]
+    showSlides(1, 0);
+    showSlides(1, 1);
+
+    function plusSlides(n, no) {
+        showSlides(slideIndex[no] += n, no);
+    }
+
+    function showSlides(n, no) {
+        var i;
+        var x = document.getElementsByClassName(slideId[no]);
+        if (n > x.length) {slideIndex[no] = 1}
+        if (n < 1) {slideIndex[no] = x.length}
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        x[slideIndex[no]-1].style.display = "block";
     }
 </script>
+
+</body>
 </html>

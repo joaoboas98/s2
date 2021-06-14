@@ -79,12 +79,13 @@ public class Utilizador implements Serializable {
         this.utilizadorId = utilizadorId;
     }
 
-    public Utilizador(BigDecimal utilizadorId, String utilizadorNome, String utilizadorMorada, BigInteger utilizadorIdade, String utilizadorPass) {
+    public Utilizador(BigDecimal utilizadorId, String utilizadorNome, String utilizadorMorada, BigInteger utilizadorIdade, BigDecimal utilizadorTipo,String utilizadorPass) {
         this.utilizadorId = utilizadorId;
         this.utilizadorNome = utilizadorNome;
         this.utilizadorMorada = utilizadorMorada;
         this.utilizadorIdade = utilizadorIdade;
         this.utilizadorPass = utilizadorPass;
+        this.utilizadorTipo = utilizadorTipo;
     }
 
     public BigDecimal getUtilizadorId() {
