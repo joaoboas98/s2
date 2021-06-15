@@ -20,7 +20,6 @@ public class trilho {
         List<SpringWebMVC.s2.DAL.Trilho> trilhoInstance = SpringWebMVC.s2.BLL.Trilho.readAll();
         ModelAndView mview = new ModelAndView("trilho");
         mview.addObject("trilhos", trilhoInstance);
-
         return mview;
 
     }

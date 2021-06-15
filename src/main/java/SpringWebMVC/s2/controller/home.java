@@ -2,6 +2,7 @@ package SpringWebMVC.s2.controller;
 
 import SpringWebMVC.s2.DAL.Utilizador;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
