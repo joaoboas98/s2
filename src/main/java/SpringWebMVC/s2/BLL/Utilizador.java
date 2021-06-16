@@ -24,6 +24,27 @@ public class Utilizador {
         });
         return listaUtilizador;
     }
+    public static boolean createUtilizador(SpringWebMVC.s2.DAL.Utilizador utilizador){
+        factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+        EntityManager em = factory.createEntityManager();
+        Boolean existe = false;
+
+        for(SpringWebMVC.s2.DAL.Utilizador u : SpringWebMVC.s2.BLL.Utilizador.readAllUtilizador()){
+            if(u.getUtilizadorNome().equals(utilizador.getUtilizadorNome())){
+                existe = true;
+            }
+        }
+
+        if(existe){
+            return false;
+        } else{
+            em.getTransaction().begin();
+            em.persist(utilizador);
+            em.getTransaction().commit();
+
+            return true;
+        }
+    }
 
     public static SpringWebMVC.s2.DAL.Utilizador UtilizadorLogin(String username, String password) {
         SpringWebMVC.s2.DAL.Utilizador utilizador = new SpringWebMVC.s2.DAL.Utilizador();
