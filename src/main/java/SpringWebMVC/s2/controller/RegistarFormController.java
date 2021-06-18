@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
 @Controller
-public class RegistarFormController {
+public class RegistarFormController  {
     @RequestMapping(value="/registo")
 
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response)

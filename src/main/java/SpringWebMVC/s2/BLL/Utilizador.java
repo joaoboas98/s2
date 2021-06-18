@@ -11,7 +11,7 @@ public class Utilizador {
 
     private static final String PERSISTENCE_UNIT_NAME = "JPA";
     private static EntityManagerFactory factory;
-
+    private static EntityManager em = null;
     public static List<SpringWebMVC.s2.DAL.Utilizador> readAllUtilizador() {
         factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         EntityManager em = factory.createEntityManager();
@@ -24,27 +24,18 @@ public class Utilizador {
         });
         return listaUtilizador;
     }
-    public static boolean createUtilizador(SpringWebMVC.s2.DAL.Utilizador utilizador){
-        factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-        EntityManager em = factory.createEntityManager();
-        Boolean existe = false;
 
-        for(SpringWebMVC.s2.DAL.Utilizador u : SpringWebMVC.s2.BLL.Utilizador.readAllUtilizador()){
-            if(u.getUtilizadorNome().equals(utilizador.getUtilizadorNome())){
-                existe = true;
-            }
-        }
+    public static void createUtilizador(SpringWebMVC.s2.DAL.Utilizador  uti){
+        if(factory == null)
+            factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 
-        if(existe){
-            return false;
-        } else{
-            em.getTransaction().begin();
-            em.persist(utilizador);
-            em.getTransaction().commit();
+        if (em == null) em = factory.createEntityManager();
 
-            return true;
-        }
+        em.getTransaction().begin();
+        em.persist(uti);
+        em.getTransaction().commit();
     }
+
 
     public static SpringWebMVC.s2.DAL.Utilizador UtilizadorLogin(String username, String password) {
         SpringWebMVC.s2.DAL.Utilizador utilizador = new SpringWebMVC.s2.DAL.Utilizador();

@@ -18,6 +18,7 @@ public class RegistoController {
 
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response)
              {
+              int id= 123421;
         BigDecimal tipo = BigDecimal.ONE;
         String nome = request.getParameter("Uname");
         String morada = request.getParameter("morada");
@@ -28,6 +29,7 @@ public class RegistoController {
                  ModelAndView mview = null;
 
             SpringWebMVC.s2.DAL.Utilizador utilizador = new SpringWebMVC.s2.DAL.Utilizador();
+            utilizador.setUtilizadorId(id);
             utilizador.setUtilizadorNome(nome);
             utilizador.setUtilizadorIdade(BigInteger.valueOf(idadeP));
             utilizador.setUtilizadorPass(password1);
@@ -35,7 +37,7 @@ public class RegistoController {
             utilizador.setUtilizadorTipo(tipo);
 
 
-            Boolean modelInstance = SpringWebMVC.s2.BLL.Utilizador.createUtilizador(utilizador);
+            SpringWebMVC.s2.BLL.Utilizador.createUtilizador(utilizador);
 
 
             msg = "Utilizador registado!";

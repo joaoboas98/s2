@@ -14,7 +14,7 @@ import java.util.List;
 
 @Controller
 public class utilizador {
-    @RequestMapping(value={ "/registar", "/login"})
+    @RequestMapping(value={  "/login"})
 
 
     public ModelAndView test(HttpServletResponse response, HttpServletRequest request) throws IOException {
