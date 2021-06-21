@@ -43,7 +43,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Trilho.findByTrilhoLongitudeFim", query = "SELECT t FROM Trilho t WHERE t.trilhoLongitudeFim = :trilhoLongitudeFim"),
     @NamedQuery(name = "Trilho.findByTrilhoCpFim", query = "SELECT t FROM Trilho t WHERE t.trilhoCpFim = :trilhoCpFim"),
     @NamedQuery(name = "Trilho.findByTrilhoDescricao", query = "SELECT t FROM Trilho t WHERE t.trilhoDescricao = :trilhoDescricao"),
-    @NamedQuery(name = "Trilho.findByTrilhoNivel", query = "SELECT t FROM Trilho t WHERE t.trilhoNivel = :trilhoNivel")})
+    @NamedQuery(name = "Trilho.findByTrilhoNivel", query = "SELECT t FROM Trilho t WHERE t.trilhoNivel = :trilhoNivel")
+     })
 public class Trilho implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -77,6 +78,8 @@ public class Trilho implements Serializable {
     @Basic(optional = false)
     @Column(name = "TRILHO_NIVEL")
     private BigInteger trilhoNivel;
+
+
     @JoinTable(name = "TRILHO_PONTO", joinColumns = {
         @JoinColumn(name = "TRILHO_ID", referencedColumnName = "TRILHO_ID")}, inverseJoinColumns = {
         @JoinColumn(name = "PONTO_ID", referencedColumnName = "PONTO_ID")})
@@ -94,19 +97,27 @@ public class Trilho implements Serializable {
     @OneToMany(mappedBy = "trilhoId")
     private List<FotoTrilho> fotoTrilhoList;
 
-    public Trilho() {
-    }
 
-    public Trilho(BigDecimal trilhoId) {
-        this.trilhoId = trilhoId;
-    }
 
-    public Trilho(BigDecimal trilhoId, String trilhoNome, String trilhoDescricao, BigInteger trilhoNivel) {
+
+
+
+    public Trilho(BigDecimal trilhoId, String trilhoNome, String trilhoDescricao, BigInteger trilhoNivel, Serializable trilhoFoto) {
         this.trilhoId = trilhoId;
         this.trilhoNome = trilhoNome;
         this.trilhoDescricao = trilhoDescricao;
         this.trilhoNivel = trilhoNivel;
+
     }
+
+    public Trilho() {
+
+    }
+
+
+
+
+
 
     public BigDecimal getTrilhoId() {
         return trilhoId;
@@ -200,6 +211,8 @@ public class Trilho implements Serializable {
         return trilhoNivel;
     }
 
+
+
     public void setTrilhoNivel(BigInteger trilhoNivel) {
         this.trilhoNivel = trilhoNivel;
     }
@@ -273,5 +286,6 @@ public class Trilho implements Serializable {
     public String toString() {
         return "SpringWebMVC.s2.DAL.Trilho[ trilhoId=" + trilhoId + " ]";
     }
-    
+
+
 }

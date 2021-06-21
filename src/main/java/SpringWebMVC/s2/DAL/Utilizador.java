@@ -28,18 +28,18 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Utilizador.findByUtilizadorTipo", query = "SELECT u FROM Utilizador u WHERE u.utilizadorTipo = :utilizadorTipo"),
     @NamedQuery(name = "Utilizador.findByUtilizadorMorada", query = "SELECT u FROM Utilizador u WHERE u.utilizadorMorada = :utilizadorMorada"),
     @NamedQuery(name = "Utilizador.findByUtilizadorIdade", query = "SELECT u FROM Utilizador u WHERE u.utilizadorIdade = :utilizadorIdade"),
-    @NamedQuery(name = "Utilizador.findByUtilizadorPass", query = "SELECT u FROM Utilizador u WHERE u.utilizadorPass = :utilizadorPass")})
+    @NamedQuery(name = "Utilizador.findByUtilizadorPass", query = "SELECT u FROM Utilizador u WHERE u.utilizadorPass = :utilizadorPass")
+})
 
 public class Utilizador implements Serializable {
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
-
-    @Column(name = "UTILIZADOR_ID", nullable = false)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Realizador_SEQ")
-    @SequenceGenerator(sequenceName = "REALIZADOR_SEQ", allocationSize = 1, name = "Realizador_SEQ")
-    private int utilizadorId;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="quinta_sequence")
+    @SequenceGenerator (name="quinta_sequence", sequenceName="UTILIZADOR_SEQ", allocationSize = 1)
+    @Column(name = "UTILIZADOR_ID")
+    private Long utilizadorId;
 
     @Column(name = "UTILIZADOR_NOME")
     private String utilizadorNome;
@@ -72,11 +72,11 @@ public class Utilizador implements Serializable {
     public Utilizador() {
     }
 
-    public Utilizador(int utilizadorId) {
+    public Utilizador(Long utilizadorId) {
         this.utilizadorId = utilizadorId;
     }
 
-    public Utilizador(int utilizadorId, String utilizadorNome, String utilizadorMorada, BigInteger utilizadorIdade, BigDecimal utilizadorTipo,String utilizadorPass) {
+    public Utilizador(Long utilizadorId, String utilizadorNome, String utilizadorMorada, BigInteger utilizadorIdade, BigDecimal utilizadorTipo,String utilizadorPass) {
         this.utilizadorId = utilizadorId;
         this.utilizadorNome = utilizadorNome;
         this.utilizadorMorada = utilizadorMorada;
@@ -85,11 +85,11 @@ public class Utilizador implements Serializable {
         this.utilizadorTipo = utilizadorTipo;
     }
 
-    public int getUtilizadorId() {
+    public Long getUtilizadorId() {
         return utilizadorId;
     }
 
-    public void setUtilizadorId(int utilizadorId) {
+    public void setUtilizadorId(Long utilizadorId) {
         this.utilizadorId = utilizadorId;
     }
 

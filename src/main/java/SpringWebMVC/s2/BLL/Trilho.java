@@ -9,15 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Trilho {
-    private static final String PERSISTENCE_UNIT_NAME = "JPA";
-    private static EntityManagerFactory factory;
-    private static EntityManager em = null;
+
+    private static final EntityManager em = entityManager.getEntityManager();
 
     public static List<SpringWebMVC.s2.DAL.Trilho> readAll(){
         List<SpringWebMVC.s2.DAL.Trilho> tri = new ArrayList<>();
 
-        factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-        if (em == null) em = factory.createEntityManager();
+
 
         Query q1 = em.createNamedQuery("Trilho.findAll");
         List<Object> lstObj = q1.getResultList();

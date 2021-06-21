@@ -9,12 +9,13 @@ import java.util.List;
 
 public class Utilizador {
 
-    private static final String PERSISTENCE_UNIT_NAME = "JPA";
-    private static EntityManagerFactory factory;
-    private static EntityManager em = null;
+
+    private static final EntityManager em = entityManager.getEntityManager();
+
+
     public static List<SpringWebMVC.s2.DAL.Utilizador> readAllUtilizador() {
-        factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-        EntityManager em = factory.createEntityManager();
+
+
 
         List<SpringWebMVC.s2.DAL.Utilizador> listaUtilizador= new ArrayList<>();
 
@@ -26,10 +27,7 @@ public class Utilizador {
     }
 
     public static void createUtilizador(SpringWebMVC.s2.DAL.Utilizador  uti){
-        if(factory == null)
-            factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 
-        if (em == null) em = factory.createEntityManager();
 
         em.getTransaction().begin();
         em.persist(uti);
