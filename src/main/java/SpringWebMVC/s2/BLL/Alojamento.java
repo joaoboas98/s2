@@ -12,8 +12,8 @@ public class Alojamento {
     private static EntityManagerFactory factory;
     private static EntityManager em = null;
 
-    public static List<Alojamento> readAll(){
-        List<Alojamento> alo = new ArrayList<>();
+    public static List<SpringWebMVC.s2.DAL.Alojamento> readAll(){
+        List<SpringWebMVC.s2.DAL.Alojamento> tri = new ArrayList<>();
 
         factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         if (em == null) em = factory.createEntityManager();
@@ -22,11 +22,11 @@ public class Alojamento {
         List<Object> lstObj = q1.getResultList();
 
         for(Object obj : lstObj){
-            Alojamento gui = ((Alojamento)obj);
-            alo.add(gui);
+            SpringWebMVC.s2.DAL.Alojamento gui = ((SpringWebMVC.s2.DAL.Alojamento)obj);
+            tri.add(gui);
         }
 
-        return alo;
+        return tri;
     }
 
 }
