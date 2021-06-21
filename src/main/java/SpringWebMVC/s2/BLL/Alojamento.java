@@ -7,16 +7,13 @@ import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hibernate.jpa.AvailableSettings.PERSISTENCE_UNIT_NAME;
+
 public class Alojamento {
-    private static final String PERSISTENCE_UNIT_NAME = "JPA";
-    private static EntityManagerFactory factory;
-    private static EntityManager em = null;
+    private static final EntityManager em = entityManager.getEntityManager();
 
     public static List<SpringWebMVC.s2.DAL.Alojamento> readAll(){
         List<SpringWebMVC.s2.DAL.Alojamento> tri = new ArrayList<>();
-
-        factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-        if (em == null) em = factory.createEntityManager();
 
         Query q1 = em.createNamedQuery("Alojamento.findAll");
         List<Object> lstObj = q1.getResultList();

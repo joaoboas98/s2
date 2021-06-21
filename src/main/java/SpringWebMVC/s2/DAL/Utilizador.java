@@ -37,7 +37,7 @@ public class Utilizador implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="quinta_sequence")
-    @SequenceGenerator (name="quinta_sequence", sequenceName="UTILIZADOR_SEQ", allocationSize = 1)
+    @SequenceGenerator (name="quinta_sequence", sequenceName="S_UTILIZADOR", allocationSize = 1)
     @Column(name = "UTILIZADOR_ID")
     private Long utilizadorId;
 
