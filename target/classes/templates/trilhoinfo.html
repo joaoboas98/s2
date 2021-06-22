@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
-<title>W3.CSS Template</title>
+<title>Trilho Detalhado</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <body id="myPage">
@@ -106,6 +108,65 @@
         from {opacity: .4}
         to {opacity: 1}
     }
+
+
+
+
+    #rating-value{
+        width: 110px;
+        margin: 40px auto 0;
+        padding: 10px 5px;
+        text-align: center;
+        box-shadow: inset 0 0 2px 1px rgba(46,204,113,.2);
+    }
+
+    /*styling star rating*/
+    .rating{
+        border: none;
+        float: left;
+    }
+
+    .rating > input{
+        display: none;
+    }
+
+    .rating > label:before{
+        content: '\f005';
+        font-family: FontAwesome;
+        margin: 5px;
+        font-size: 1.5rem;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .rating > .half:before{
+        content: '\f089';
+        position: absolute;
+        cursor: pointer;
+    }
+
+
+    .rating > label{
+        color: #ddd;
+        float: right;
+        cursor: pointer;
+    }
+
+    .rating > input:checked ~ label,
+    .rating:not(:checked) > label:hover,
+    .rating:not(:checked) > label:hover ~ label{
+        color: #2ce679;
+    }
+
+    .rating > input:checked + label:hover,
+    .rating > input:checked ~ label:hover,
+    .rating > label:hover ~ input:checked ~ label,
+    .rating > input:checked ~ label:hover ~ label{
+        color: #2ddc76;
+    }
+    .checked {
+        color: orange;
+    }
 </style>
 <section class="content-header" th:replace="navbar"></section>
 
@@ -125,7 +186,7 @@
 </div>
 
 
-<div class="w3-main" style="margin-left:200px" >
+<div class="w3-main" style="margin-left:100px;margin-right:100px" >
     <!-- Work Row -->
     <div class="w3-row-padding w3-padding-64 w3-theme-l1" id="work">
 
@@ -135,11 +196,50 @@
 
         <div class="w3-quarter" th:each="class: ${classtrilho}" th:if="${trilhosInf.getTrilhoId()}==${class.getTrilhoId().getTrilhoId()}">
             <div class="w3-card w3-white">
-                <div class="w3-container">
+                <div class="w3-container" th:if="${class.getClassTrilhoValor}==5">
                     <h3 th:text= "${class.getUtilizadorId().getUtilizadorNome()}" ></h3>
-                    <h4 th:text= "${class.getClassTrilhoValor}+' Estrelas'"></h4>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
                     <p th:text= "${class.getClassTrilhoComentario}"></p>
-
+                </div>
+                <div class="w3-container" th:if="${class.getClassTrilhoValor}==4">
+                    <h3 th:text= "${class.getUtilizadorId().getUtilizadorNome()}" ></h3>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <p th:text= "${class.getClassTrilhoComentario}"></p>
+                </div>
+                <div class="w3-container" th:if="${class.getClassTrilhoValor}==3">
+                    <h3 th:text= "${class.getUtilizadorId().getUtilizadorNome()}" ></h3>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <p th:text= "${class.getClassTrilhoComentario}"></p>
+                </div>
+                <div class="w3-container" th:if="${class.getClassTrilhoValor}==2">
+                    <h3 th:text= "${class.getUtilizadorId().getUtilizadorNome()}" ></h3>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <p th:text= "${class.getClassTrilhoComentario}"></p>
+                </div>
+                <div class="w3-container" th:if="${class.getClassTrilhoValor}==1">
+                    <h3 th:text= "${class.getUtilizadorId().getUtilizadorNome()}" ></h3>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <p th:text= "${class.getClassTrilhoComentario}"></p>
                 </div>
             </div>
         </div>
@@ -162,22 +262,32 @@
                 <div class="w3-padding-16"><span class="w3-xlarge w3-border-teal w3-bottombar">Avaliar Trilho</span></div>
 
             </div>
-            <div class="w3-col m5">
-                <form class="w3-container w3-card-4 w3-padding-16 w3-white" action="/action_page.php" target="_blank">
+            <div class="w3-col m5" style="margin-left: 300px">
+                <form class="w3-container w3-card-4 w3-padding-16 w3-white mt-5"  method="post" action="/classificartrilho"  >
                     <div class="w3-section">
-                        <label>Name</label>
-                        <input class="w3-input" type="text" name="Name" required>
+                        <label>Classificar</label>
+                        <div class="rating-wrap">
+                            <div class="center">
+                                <fieldset class="rating">
+                                    <input type="radio" id="star5" name="rating" value="5"/><label for="star5" class="full" title="Awesome"></label>
+                                    <input type="radio" id="star4" name="rating" value="4"/><label for="star4" class="full"></label>
+                                    <input type="radio" id="star3" name="rating" value="3"/><label for="star3" class="full"></label>
+                                    <input type="radio" id="star2" name="rating" value="2"/><label for="star2" class="full"></label>
+                                    <input type="radio" id="star1" name="rating" value="1"/><label for="star1" class="full"></label>
+                                </fieldset>
+                            </div>
+
+                            <h4 id="rating-value" ></h4>
+                            <input  class="w3-input" type="hidden" name="idTrilho"  th:value="${trilhosInf.getTrilhoId()}" >
+                            <input  class="w3-input" type="hidden" name="idU"   th:value="${utilizadorsession.getUtilizadorId()}" >
+                            <input id="valor" class="w3-input" type="hidden" name="Classifacao" hidden >
+                        </div>
+
                     </div>
-                    <div class="w3-section">
-                        <label>Email</label>
-                        <input class="w3-input" type="text" name="Email" required>
+                    <div class="w3-section " >
+                        <label>Descrever</label>
+                        <input class="w3-input" type="text" name="Descricao" required>
                     </div>
-                    <div class="w3-section">
-                        <label>Message</label>
-                        <input class="w3-input" type="text" name="Message" required>
-                    </div>
-                    <input class="w3-check" type="checkbox" checked name="Like">
-                    <label>I Like it!</label>
                     <button type="submit" class="w3-button w3-right w3-theme">Send</button>
                 </form>
             </div>
@@ -262,7 +372,25 @@
             dots[slideIndex-1].className += " active";
         }
     </script>
+    <script>
+        let star = document.querySelectorAll('input:not([type=text])');
+        let showValue = document.querySelector('#rating-value');
+        for (let i = 0; i < star.length; i++) {
+            star[i].addEventListener('click', function() {
+                i = this.value;
+                document.getElementById("valor").value = i;
+                showValue.innerHTML = i + ' de 5 estrelas' ;
+
+            });
+        }
+
+        function goToaddClass(idTrilho, idU){
+            document.body.innerHTML += '<form id="dynForm" action="/classificartrilho" method="post"><input type="hidden" name="idTrilho" value="'+idTrilho+'"><input type="hidden" name="idU" value="'+idU+'"></form>';
+            document.getElementById("dynForm").submit();
+        }
+    </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1FHaBazz73EvATpjRfIjAa5HIicMkUWk&callback=myMap"></script>
+
 </div>
 </body>
 

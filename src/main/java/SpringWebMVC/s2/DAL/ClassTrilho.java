@@ -8,15 +8,7 @@ package SpringWebMVC.s2.DAL;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -36,6 +28,8 @@ public class ClassTrilho implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="quinta_sequence")
+    @SequenceGenerator (name="quinta_sequence", sequenceName="CLASS_TRILHO_SEQ", allocationSize = 1)
     @Basic(optional = false)
     @Column(name = "CLASS_TRILHO_ID")
     private BigDecimal classTrilhoId;

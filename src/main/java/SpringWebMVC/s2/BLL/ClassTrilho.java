@@ -23,4 +23,11 @@ public class ClassTrilho {
 
         return tri;
     }
+    public static void createClassificar(SpringWebMVC.s2.DAL.ClassTrilho  cla){
+
+
+        em.getTransaction().begin();
+        em.persist(cla);
+        em.getTransaction().commit();
+    }
 }

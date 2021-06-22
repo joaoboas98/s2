@@ -102,7 +102,7 @@ public class Trilho implements Serializable {
 
 
 
-    public Trilho(BigDecimal trilhoId, String trilhoNome, String trilhoDescricao, BigInteger trilhoNivel, Serializable trilhoFoto) {
+    public Trilho(BigDecimal trilhoId) {
         this.trilhoId = trilhoId;
         this.trilhoNome = trilhoNome;
         this.trilhoDescricao = trilhoDescricao;

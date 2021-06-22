@@ -18,6 +18,7 @@ public class trilho {
     @RequestMapping(value= "/trilho")
     public ModelAndView test(HttpServletResponse response, HttpServletRequest request) throws IOException {
         String idU = request.getParameter("idU");
+
         SpringWebMVC.s2.DAL.Utilizador UtilizadorInstance = SpringWebMVC.s2.BLL.Utilizador.readUtilizador(Integer.parseInt(idU));
         List<SpringWebMVC.s2.DAL.Trilho> trilhoInstance = SpringWebMVC.s2.BLL.Trilho.readAll();
 
