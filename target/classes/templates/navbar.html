@@ -1,0 +1,185 @@
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  #myInput {
+    background-image: url('/css/searchicon.png');
+    background-position: 10px 12px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+  }
+
+  #myUL {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  #myUL li a {
+    border: 1px solid #ddd;
+    margin-top: -1px; /* Prevent double borders */
+    background-color: #f6f6f6;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+    display: block
+  }
+
+  #myUL li a:hover:not(.header) {
+    background-color: #eee;
+  }
+  /* Dropdown Button */
+  .dropbtn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+
+  /* Dropdown button on hover & focus */
+  .dropbtn:hover, .dropbtn:focus {
+    background-color: #3e8e41;
+  }
+
+  /* The search field */
+  #myInputs {
+    box-sizing: border-box;
+    background-image: url('searchicon.png');
+    background-position: 14px 12px;
+    background-repeat: no-repeat;
+    font-size: 16px;
+    padding: 14px 20px 12px 45px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+  }
+
+  /* The search field when it gets focus/clicked on */
+  #myInput:focus {outline: 3px solid #ddd;}
+
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f6f6f6;
+    min-width: 230px;
+    border: 1px solid #ddd;
+    z-index: 1;
+  }
+
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+  /* Change color of dropdown links on hover */
+  .dropdown-content a:hover {background-color: #f1f1f1}
+
+  /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+  .show {display:block;}
+  div.gallery {
+    border: 1px solid #ccc;
+  }
+
+  div.gallery:hover {
+    border: 1px solid #777;
+  }
+
+  div.gallery img {
+    width: 100%;
+    height: auto;
+  }
+
+  div.desc {
+    padding: 10px;
+    text-align: center;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .responsive {
+    padding: 0 6px;
+    float: left;
+    width: 24.99999%;
+  }
+
+  @media only screen and (max-width: 700px) {
+    .responsive {
+      width: 49.99999%;
+      margin: 6px 0;
+    }
+  }
+
+  @media only screen and (max-width: 500px) {
+    .responsive {
+      width: 100%;
+    }
+  }
+
+  .clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+</style>
+<div class="w3-top">
+  <div class="w3-bar w3-green w3-card w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-green" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
+    <a th:attr="onclick=|goToTrilhos('${utilizadorsession.getUtilizadorId()}')|"  class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white " id="trilho" >Trilhos</a>
+    <a th:attr="onclick=|goToAlojamento('${utilizadorsession.getUtilizadorId()}')|" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Alojamento</a>
+    <a href="/pontointeresse" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Pontos de Interesse</a>
+    <a th:attr="onclick=|goToExcursao('${utilizadorsession.getUtilizadorId()}')|" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Excursão</a>
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" th:text="${utilizadorsession.getUtilizadorNome()}">Excursão</a>
+  </div>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Trilhos</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Alojamento</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Pontos de Interesse</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Excursão</a>
+  </div>
+
+</div>
+<script>
+  function goToTrilhos(idU){
+    document.body.innerHTML += '<form id="dynForm" action="/trilho" method="post"><input type="hidden" name="idU" value="'+idU+'"></form>';
+    document.getElementById("dynForm").submit();
+  }
+  function goToAlojamento(idU){
+    document.body.innerHTML += '<form id="dynForm" action="/alojamento" method="post"><input type="hidden" name="idU" value="'+idU+'"></form>';
+    document.getElementById("dynForm").submit();
+  }
+  function goToExcursao(idU){
+    document.body.innerHTML += '<form id="dynForm" action="/excursao" method="post"><input type="hidden" name="idU" value="'+idU+'"></form>';
+    document.getElementById("dynForm").submit();
+  }
+</script>

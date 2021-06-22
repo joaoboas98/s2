@@ -39,7 +39,7 @@ public class Utilizador implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="quinta_sequence")
     @SequenceGenerator (name="quinta_sequence", sequenceName="S_UTILIZADOR", allocationSize = 1)
     @Column(name = "UTILIZADOR_ID")
-    private Long utilizadorId;
+    private BigDecimal utilizadorId;
 
     @Column(name = "UTILIZADOR_NOME")
     private String utilizadorNome;
@@ -72,11 +72,11 @@ public class Utilizador implements Serializable {
     public Utilizador() {
     }
 
-    public Utilizador(Long utilizadorId) {
+    public Utilizador(BigDecimal utilizadorId) {
         this.utilizadorId = utilizadorId;
     }
 
-    public Utilizador(Long utilizadorId, String utilizadorNome, String utilizadorMorada, BigInteger utilizadorIdade, BigDecimal utilizadorTipo,String utilizadorPass) {
+    public Utilizador(BigDecimal utilizadorId, String utilizadorNome, String utilizadorMorada, BigInteger utilizadorIdade, BigDecimal utilizadorTipo,String utilizadorPass) {
         this.utilizadorId = utilizadorId;
         this.utilizadorNome = utilizadorNome;
         this.utilizadorMorada = utilizadorMorada;
@@ -85,11 +85,11 @@ public class Utilizador implements Serializable {
         this.utilizadorTipo = utilizadorTipo;
     }
 
-    public Long getUtilizadorId() {
+    public BigDecimal getUtilizadorId() {
         return utilizadorId;
     }
 
-    public void setUtilizadorId(Long utilizadorId) {
+    public void setUtilizadorId(BigDecimal utilizadorId) {
         this.utilizadorId = utilizadorId;
     }
 

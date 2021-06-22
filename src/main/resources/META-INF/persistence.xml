@@ -18,7 +18,7 @@
     <class>SpringWebMVC.s2.DAL.Utilizador</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
-      <property name="javax.persistence.jdbc.user" value="JOAO"/>
+      <property name="javax.persistence.jdbc.user" value="RAFA"/>
       <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
 
       <property name="javax.persistence.jdbc.password" value="12345"/>

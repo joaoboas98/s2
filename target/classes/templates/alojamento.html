@@ -1,0 +1,74 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<head>
+  <style>
+
+    div.gallery {
+      border: 1px solid #ccc;
+    }
+
+    div.gallery:hover {
+      border: 1px solid #777;
+    }
+
+    div.gallery img {
+      width: 100%;
+      height: auto;
+    }
+
+    div.desc {
+      padding: 15px;
+      text-align: center;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .responsive {
+      padding: 0 6px;
+      float: left;
+      width: 24.99999%;
+    }
+
+    @media only screen and (max-width: 700px) {
+      .responsive {
+        width: 49.99999%;
+        margin: 6px 0;
+      }
+    }
+
+    @media only screen and (max-width: 500px) {
+      .responsive {
+        width: 100%;
+      }
+    }
+
+    .clearfix:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+  </style>
+
+</head>
+<body>
+<section class="content-header" th:replace="navbar"></section>
+
+<div class="w3-row-padding w3-padding-64 w3-container" >
+  <div class="responsive" th:each="alojamento: ${alojamentos}">
+    <div class="gallery">
+      <a target="_blank" href="img_5terre.jpg">
+
+        <img src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAUA
+    AAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO
+        9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot" />
+      </a>
+      <div class="desc" th:text="${alojamento.getAlojamentoNome()}"></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

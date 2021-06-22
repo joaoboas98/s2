@@ -4,6 +4,8 @@ import SpringWebMVC.s2.DAL.Utilizador;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,13 +37,13 @@ public class utilizador {
         } else if (modelInstance.getUtilizadorTipo().equals(BigDecimal.ONE)) {
             System.out.println("utilizador");
             mview = new ModelAndView("home");
-            mview.addObject("utilizador", modelInstance);
+            mview.addObject("utilizadorsession", modelInstance);
             mview.addObject("msg", msg);
 
         } else if (modelInstance.getUtilizadorTipo().equals(BigDecimal.ZERO)) {
             System.out.println("Admi");
             mview = new ModelAndView("home");
-            mview.addObject("utilizador", modelInstance);
+            mview.addObject("utilizadorsession", modelInstance);
             mview.addObject("msg", msg);
         }
 
