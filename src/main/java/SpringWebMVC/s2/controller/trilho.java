@@ -20,11 +20,11 @@ public class trilho {
         String idU = request.getParameter("idU");
         SpringWebMVC.s2.DAL.Utilizador UtilizadorInstance = SpringWebMVC.s2.BLL.Utilizador.readUtilizador(Integer.parseInt(idU));
         List<SpringWebMVC.s2.DAL.Trilho> trilhoInstance = SpringWebMVC.s2.BLL.Trilho.readAll();
-        List<SpringWebMVC.s2.DAL.ClassTrilho> classtrilhoInstance = SpringWebMVC.s2.BLL.ClassTrilho.readAll();
+
         ModelAndView mview = new ModelAndView("trilho");
         mview.addObject("utilizadorsession", UtilizadorInstance);
         mview.addObject("trilhos", trilhoInstance);
-        mview.addObject("classtrilho", classtrilhoInstance);
+
         return mview;
 
     }

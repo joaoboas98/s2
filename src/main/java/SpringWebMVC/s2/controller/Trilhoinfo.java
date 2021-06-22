@@ -18,7 +18,7 @@ public class Trilhoinfo {
         String id = request.getParameter("idTrilho");
         String idU = request.getParameter("idU");
         SpringWebMVC.s2.DAL.Utilizador UtilizadorInstance = SpringWebMVC.s2.BLL.Utilizador.readUtilizador(Integer.parseInt(idU));
-
+        List<SpringWebMVC.s2.DAL.ClassTrilho> classtrilhoInstance = SpringWebMVC.s2.BLL.ClassTrilho.readAll();
         List<SpringWebMVC.s2.DAL.FotoTrilho> FotoTrilhoInstance = Fotos.readAllFotoTrilho();
 
         SpringWebMVC.s2.DAL.Trilho trilhoInstance = SpringWebMVC.s2.BLL.Trilho.readTrilho(Integer.parseInt(id));
@@ -26,6 +26,7 @@ public class Trilhoinfo {
         mview.addObject("trilhosInf", trilhoInstance);
         mview.addObject("fotoTrilho", FotoTrilhoInstance);
         mview.addObject("utilizadorsession", UtilizadorInstance);
+        mview.addObject("classtrilho", classtrilhoInstance);
         return mview;
 
     }
