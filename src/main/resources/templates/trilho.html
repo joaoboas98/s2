@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <title>Trilhos</title>
 <meta charset="UTF-8">
 
@@ -107,51 +107,51 @@
     /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
     .show {display:block;}
     div.gallery {
-    border: 1px solid #ccc;
-}
-
-div.gallery:hover {
-    border: 1px solid #777;
-}
-
-div.gallery img {
-    width: 100%;
-    height: auto;
-}
-
-div.desc {
-    padding: 10px;
-    text-align: center;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-.responsive {
-    padding: 0 6px;
-    float: left;
-    width: 24.99999%;
-}
-
-@media only screen and (max-width: 700px) {
-    .responsive {
-        width: 49.99999%;
-        margin: 6px 0;
+        border: 1px solid #ccc;
     }
-}
 
-@media only screen and (max-width: 500px) {
-    .responsive {
+    div.gallery:hover {
+        border: 1px solid #777;
+    }
+
+    div.gallery img {
         width: 100%;
+        height: auto;
     }
-}
 
-.clearfix:after {
-    content: "";
-    display: table;
-    clear: both;
-}
+    div.desc {
+        padding: 10px;
+        text-align: center;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .responsive {
+        padding: 0 6px;
+        float: left;
+        width: 24.99999%;
+    }
+
+    @media only screen and (max-width: 700px) {
+        .responsive {
+            width: 49.99999%;
+            margin: 6px 0;
+        }
+    }
+
+    @media only screen and (max-width: 500px) {
+        .responsive {
+            width: 100%;
+        }
+    }
+
+    .clearfix:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
     body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 </style>
 <section class="content-header" th:replace="navbar"></section>
@@ -176,7 +176,7 @@ div.desc {
         <br>
 
 
-        </div>
+    </div>
 
     </div>
 </nav>
@@ -198,19 +198,20 @@ div.desc {
         </div>
 
 
-    <div class="w3-row-padding w3-padding-64 w3-container">
-        <div class="responsive" th:each="trilho: ${trilhos}">
-            <div class="gallery">
-                <a target="_blank" href="/trilhosinfo" method="post">
+        <div class="w3-row-padding w3-padding-64 w3-container">
+            <div class="responsive" th:each="trilho: ${trilhos}">
+                <div class="gallery">
+                    <a target="_blank" th:attr="onclick=|goToTrilhosinfo('${trilho.getTrilhoId()}','${utilizadorsession.getUtilizadorId()}')|" >
 
-                    <img src="https://www.vagamundos.pt/wp-content/uploads/2018/11/1-42.jpg" alt="Red dot" />
+                        <img src="https://www.vagamundos.pt/wp-content/uploads/2018/11/1-42.jpg" alt="Red dot" />
 
-                <div class="desc" th:text= "'Nome: '+${trilho.getTrilhoNome()}">Nome</div>
-                <div class="desc" th:text= "'Rota:' + ${trilho.getTrilhoCidadeInicio} + '-' +  ${trilho.getTrilhoCidadeFim} ">Localização</div>
-                </a>
+                        <div id="id"  class="desc" th:text= "'Nome: '+${trilho.getTrilhoId()}">Id</div>
+                        <div class="desc" th:text= "'Nome: '+${trilho.getTrilhoNome()}">Nome</div>
+                        <div class="desc" th:text= "'Rota:' + ${trilho.getTrilhoCidadeInicio} + '-' +  ${trilho.getTrilhoCidadeFim} ">Localização</div>
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
     </header>
 
     <!-- Pagination -->
@@ -252,6 +253,12 @@ div.desc {
     function w3_close() {
         document.getElementById("mySidebar").style.display = "none";
         document.getElementById("myOverlay").style.display = "none";
+    }
+
+    function goToTrilhosinfo(idTrilho, idU){
+
+        document.body.innerHTML += '<form id="dynForm" action="/trilhoinfo" method="post"><input type="hidden" name="idTrilho" value="'+idTrilho+'"><input type="hidden" name="idU" value="'+idU+'"></form>';
+        document.getElementById("dynForm").submit();
     }
 </script>
 

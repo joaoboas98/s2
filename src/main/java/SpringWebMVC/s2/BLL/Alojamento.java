@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,17 @@ public class Alojamento {
         }
 
         return tri;
+    }
+    public static SpringWebMVC.s2.DAL.Utilizador readAlojamento(int idalojamento){
+
+        Query q = em.createNamedQuery("Utilizador.findByUtilizadorId");
+        q.setParameter("utilizadorId", BigDecimal.valueOf(idalojamento));
+        SpringWebMVC.s2.DAL.Utilizador f = null;
+        Object res = q.getSingleResult();
+
+        if(res != null) f = (SpringWebMVC.s2.DAL.Utilizador) res;
+
+        return f;
     }
 
 }
