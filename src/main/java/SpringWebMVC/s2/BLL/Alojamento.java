@@ -26,14 +26,14 @@ public class Alojamento {
 
         return tri;
     }
-    public static SpringWebMVC.s2.DAL.Utilizador readAlojamento(int idalojamento){
+    public static SpringWebMVC.s2.DAL.Alojamento readAlojamento(int idalojamento){
 
-        Query q = em.createNamedQuery("Utilizador.findByUtilizadorId");
-        q.setParameter("utilizadorId", BigDecimal.valueOf(idalojamento));
-        SpringWebMVC.s2.DAL.Utilizador f = null;
+        Query q = em.createNamedQuery("Alojamento.findByAlojamentoId");
+        q.setParameter("alojamentoId", BigDecimal.valueOf(idalojamento));
+        SpringWebMVC.s2.DAL.Alojamento f = null;
         Object res = q.getSingleResult();
 
-        if(res != null) f = (SpringWebMVC.s2.DAL.Utilizador) res;
+        if(res != null) f = (SpringWebMVC.s2.DAL.Alojamento) res;
 
         return f;
     }
