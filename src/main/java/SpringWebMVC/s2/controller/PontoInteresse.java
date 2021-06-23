@@ -16,8 +16,16 @@ public class PontoInteresse {
 
     @RequestMapping(value= "/pontointeresse")
     public ModelAndView test(HttpServletResponse response, HttpServletRequest request) throws IOException {
+        String idU = request.getParameter("idU");
+
+        SpringWebMVC.s2.DAL.Utilizador UtilizadorInstance = SpringWebMVC.s2.BLL.Utilizador.readUtilizador(Integer.parseInt(idU));
+        List<SpringWebMVC.s2.DAL.Ponto> pontoInstance = SpringWebMVC.s2.BLL.PontoInteresse.readAll();
 
         ModelAndView mview = new ModelAndView("pontointeresse");
+        mview.addObject("utilizadorsession", UtilizadorInstance);
+        mview.addObject("pontos", pontoInstance);
+
+
 
         return mview;
 
