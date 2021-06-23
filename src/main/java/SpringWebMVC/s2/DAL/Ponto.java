@@ -44,7 +44,7 @@ public class Ponto implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "PONTO_ID")
-    private Integer pontoId;
+    private BigDecimal pontoId;
     @Basic(optional = false)
     @Column(name = "PONTO_NOME")
     private String pontoNome;
@@ -70,22 +70,22 @@ public class Ponto implements Serializable {
     public Ponto() {
     }
 
-    public Ponto(Integer pontoId) {
+    public Ponto(BigDecimal pontoId) {
         this.pontoId = pontoId;
     }
 
-    public Ponto(Integer pontoId, String pontoNome, String pontoDescricao, String pontoPais) {
+    public Ponto(BigDecimal pontoId, String pontoNome, String pontoDescricao, String pontoPais) {
         this.pontoId = pontoId;
         this.pontoNome = pontoNome;
         this.pontoDescricao = pontoDescricao;
         this.pontoPais = pontoPais;
     }
 
-    public Integer getPontoId() {
+    public BigDecimal getPontoId() {
         return pontoId;
     }
 
-    public void setPontoId(Integer pontoId) {
+    public void setPontoId(BigDecimal pontoId) {
         this.pontoId = pontoId;
     }
 

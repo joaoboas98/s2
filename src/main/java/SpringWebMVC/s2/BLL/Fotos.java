@@ -38,6 +38,19 @@ public class Fotos {
         return tri2;
     }
 
+    public static List<SpringWebMVC.s2.DAL.FotoPonto> readAllFotoPonto(){
+        List<SpringWebMVC.s2.DAL.FotoPonto> tri2 = new ArrayList<>();
+        Query q1 = em.createNamedQuery("FotoPonto.findAll");
+        List<Object> lstObj = q1.getResultList();
+
+        for(Object obj : lstObj){
+            SpringWebMVC.s2.DAL.FotoPonto gui = ((SpringWebMVC.s2.DAL.FotoPonto)obj);
+            tri2.add(gui);
+        }
+
+        return tri2;
+    }
+
 
 
 

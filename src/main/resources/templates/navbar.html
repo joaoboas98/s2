@@ -155,7 +155,7 @@
     <a href="#" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
     <a th:attr="onclick=|goToTrilhos('${utilizadorsession.getUtilizadorId()}')|"  class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white " id="trilho" >Trilhos</a>
     <a th:attr="onclick=|goToAlojamento('${utilizadorsession.getUtilizadorId()}')|" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Alojamento</a>
-    <a href="/pontointeresse" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Pontos de Interesse</a>
+    <a th:attr="onclick=|goToPontoInteresse('${utilizadorsession.getUtilizadorId()}')|" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Pontos de Interesse</a>
     <a th:attr="onclick=|goToExcursao('${utilizadorsession.getUtilizadorId()}')|" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Excursão</a>
     <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" th:text="${utilizadorsession.getUtilizadorNome()}">Excursão</a>
   </div>
@@ -182,4 +182,9 @@
     document.body.innerHTML += '<form id="dynForm" action="/excursao" method="post"><input type="hidden" name="idU" value="'+idU+'"></form>';
     document.getElementById("dynForm").submit();
   }
+  function goToPontoInteresse(idU){
+    document.body.innerHTML += '<form id="dynForm" action="/pontointeresse" method="post"><input type="hidden" name="idU" value="'+idU+'"></form>';
+    document.getElementById("dynForm").submit();
+  }
+
 </script>

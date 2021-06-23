@@ -19,9 +19,14 @@ public class Excursao {
         String idU = request.getParameter("idU");
         SpringWebMVC.s2.DAL.Utilizador UtilizadorInstance = SpringWebMVC.s2.BLL.Utilizador.readUtilizador(Integer.parseInt(idU));
         List<SpringWebMVC.s2.DAL.Trilho> trilhoInstance = SpringWebMVC.s2.BLL.Trilho.readAll();
+        List<SpringWebMVC.s2.DAL.Grupo> grupoInstance = SpringWebMVC.s2.BLL.Grupo.readAll();
+        List<SpringWebMVC.s2.DAL.Guia> guiaInstance = SpringWebMVC.s2.BLL.Guia.readAll();
+        List<SpringWebMVC.s2.DAL.Excursao> excursaoInstance = SpringWebMVC.s2.BLL.Excursao.readAll();
         ModelAndView mview = new ModelAndView("excursao");
         mview.addObject("trilhos", trilhoInstance);
-
+        mview.addObject("grupos", grupoInstance);
+        mview.addObject("guias", guiaInstance);
+        mview.addObject("excursoes", excursaoInstance);
         mview.addObject("utilizadorsession", UtilizadorInstance);
         return mview;
 
