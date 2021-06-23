@@ -80,22 +80,22 @@
             <span class="close">×</span>
             <form method="post" action="/criarexcursao">
                 <label for="trilhos">Escolhe um dos Trilhos Disponiveis</label>
-                <select class="form-control" id="trilhos" name="trilhos">
-                    <option th:each="trilhos: ${trilhos}" th:value="${trilhos.getTrilhoId()}" th:text="${trilhos.getTrilhoNome()}"></option>
+                <select class="form-control" id="trilhos" name="trilhos" required>
+                    <option th:each="trilhos: ${trilhos}" th:value="${trilhos.getTrilhoId()}" th:text="${trilhos.getTrilhoNome()}" ></option>
                 </select>
                 <label for="grupo">Escolhe um dos teus grupos</label>
-                <select class="form-control" id="grupo" name="grupo">
+                <select class="form-control" id="grupo" name="grupo" required>
                     <option th:each="grupos: ${grupos}" th:if="${utilizadorsession.getUtilizadorId()}==${grupos.getUtilizadorId().getUtilizadorId()}" th:value="${grupos.getGrupoId()}" th:text="${grupos.getGrupoNome()}"></option>
                 </select>
                 <label for="grupo">Escolhe um dos Guias Disponiveis</label>
-                <select class="form-control" id="guia" name="guia">
+                <select class="form-control" id="guia" name="guia" required>
 
                     <option th:each="guias: ${guias}" th:text="${guias.getGuiaNome()}" th:value="${guias.getGuiaId()}"></option>
                 </select>
                 <label for="datainicio">Escolha o dia inicial</label>
-                <input id="datainicio" name="datainicio" type="date">
+                <input id="datainicio" name="datainicio" type="date" required>
                 <label for="datafim">Escolha o dia Final</label>
-                <input id="datafim" name="datafim" type="date">
+                <input id="datafim" name="datafim" type="date" required>
                 <input name="idU" type="hidden" th:value="${utilizadorsession.getUtilizadorId()}">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
