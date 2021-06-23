@@ -202,8 +202,8 @@
             <div class="responsive" th:each="trilho: ${trilhos}">
                 <div class="gallery">
                     <a target="_blank" th:attr="onclick=|goToTrilhosinfo('${trilho.getTrilhoId()}','${utilizadorsession.getUtilizadorId()}')|" >
-
-                        <img src="https://www.vagamundos.pt/wp-content/uploads/2018/11/1-42.jpg" alt="Red dot" />
+                        <img th:src="${trilho.getTrilhoLatitudeFim}" style="width:100%">
+                       
 
                         <div id="id"  class="desc" th:text= "'Nome: '+${trilho.getTrilhoId()}">Id</div>
                         <div class="desc" th:text= "'Nome: '+${trilho.getTrilhoNome()}">Nome</div>
