@@ -6,20 +6,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FotoAlojamento {
-    private static final String PERSISTENCE_UNIT_NAME = "JPA";
-    private static EntityManagerFactory factory;
-    private static EntityManager em = null;
+public class Fotos {
 
-    public static List<SpringWebMVC.s2.DAL.FotoAlojamento> readAll(){
+    private static final EntityManager em = entityManager.getEntityManager();
+    public static List<SpringWebMVC.s2.DAL.FotoAlojamento> readAllFotoAlojamento(){
         List<SpringWebMVC.s2.DAL.FotoAlojamento> tri2 = new ArrayList<>();
-
-        factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-        if (em == null) em = factory.createEntityManager();
-
         Query q1 = em.createNamedQuery("FotoAlojamento.findAll");
         List<Object> lstObj = q1.getResultList();
 
@@ -30,4 +25,20 @@ public class FotoAlojamento {
 
         return tri2;
     }
+    public static List<SpringWebMVC.s2.DAL.FotoTrilho> readAllFotoTrilho(){
+        List<SpringWebMVC.s2.DAL.FotoTrilho> tri2 = new ArrayList<>();
+        Query q1 = em.createNamedQuery("FotoTrilho.findAll");
+        List<Object> lstObj = q1.getResultList();
+
+        for(Object obj : lstObj){
+            SpringWebMVC.s2.DAL.FotoTrilho gui = ((SpringWebMVC.s2.DAL.FotoTrilho)obj);
+            tri2.add(gui);
+        }
+
+        return tri2;
+    }
+
+
+
+
 }

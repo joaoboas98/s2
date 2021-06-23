@@ -7,6 +7,7 @@ package SpringWebMVC.s2.DAL;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.sql.Blob;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -40,7 +41,7 @@ public class FotoAlojamento implements Serializable {
     @Basic(optional = false)
     @Lob
     @Column(name = "FOTOALO")
-    private Serializable fotoalo;
+    private byte[] fotoalo;
     @JoinColumn(name = "ALOJAMENTOID", referencedColumnName = "ALOJAMENTO_ID")
     @ManyToOne(optional = false)
     private Alojamento alojamentoid;
@@ -52,7 +53,7 @@ public class FotoAlojamento implements Serializable {
         this.fotoaloid = fotoaloid;
     }
 
-    public FotoAlojamento(BigDecimal fotoaloid, Serializable fotoalo) {
+    public FotoAlojamento(BigDecimal fotoaloid, byte[] fotoalo) {
         this.fotoaloid = fotoaloid;
         this.fotoalo = fotoalo;
     }
@@ -65,11 +66,11 @@ public class FotoAlojamento implements Serializable {
         this.fotoaloid = fotoaloid;
     }
 
-    public Serializable getFotoalo() {
+    public byte[] getFotoalo() {
         return fotoalo;
     }
 
-    public void setFotoalo(Serializable fotoalo) {
+    public void setFotoalo(byte[] fotoalo) {
         this.fotoalo = fotoalo;
     }
 

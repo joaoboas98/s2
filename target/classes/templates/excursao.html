@@ -1,0 +1,8 @@
+
+<section class="content-header" th:replace="navbar"></section>
+<div class="w3-row-padding w3-padding-64 w3-container"  >
+<label for="cars">Choose a car:</label>
+<select id="cars" name="cars" >
+  <option th:each="trilhos: ${trilhos}" value="${trilhos.getTrilhoId()" th:text="${trilhos.getTrilhoNome()}"></option>
+</select>
+</div>

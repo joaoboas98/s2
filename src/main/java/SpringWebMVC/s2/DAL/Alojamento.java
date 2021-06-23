@@ -37,7 +37,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Alojamento.findByAlojamentoLongitude", query = "SELECT a FROM Alojamento a WHERE a.alojamentoLongitude = :alojamentoLongitude"),
     @NamedQuery(name = "Alojamento.findByAlojamentoCp", query = "SELECT a FROM Alojamento a WHERE a.alojamentoCp = :alojamentoCp"),
     @NamedQuery(name = "Alojamento.findByAlojamentoDescricao", query = "SELECT a FROM Alojamento a WHERE a.alojamentoDescricao = :alojamentoDescricao"),
-    @NamedQuery(name = "Alojamento.findByPais", query = "SELECT a FROM Alojamento a WHERE a.pais = :pais")})
+    @NamedQuery(name = "Alojamento.findByAlojamentoPais", query = "SELECT a FROM Alojamento a WHERE a.alojamentoPais = :alojamentoPais")})
 public class Alojamento implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -63,8 +63,8 @@ public class Alojamento implements Serializable {
     @Basic(optional = false)
     @Column(name = "ALOJAMENTO_DESCRICAO")
     private String alojamentoDescricao;
-    @Column(name = "PAIS")
-    private String pais;
+    @Column(name = "ALOJAMENTO_PAIS")
+    private String alojamentoPais;
     @ManyToMany(mappedBy = "alojamentoList")
     private List<Trilho> trilhoList;
     @OneToMany(mappedBy = "alojamentoId")
@@ -144,12 +144,12 @@ public class Alojamento implements Serializable {
         this.alojamentoDescricao = alojamentoDescricao;
     }
 
-    public String getPais() {
-        return pais;
+    public String getAlojamentoPais() {
+        return alojamentoPais;
     }
 
-    public void setPais(String pais) {
-        this.pais = pais;
+    public void setAlojamentoPais(String alojamentoPais) {
+        this.alojamentoPais = alojamentoPais;
     }
 
     @XmlTransient

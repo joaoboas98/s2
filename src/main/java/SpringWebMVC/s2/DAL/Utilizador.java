@@ -5,18 +5,13 @@
  */
 package SpringWebMVC.s2.DAL;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -25,8 +20,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Utilizador
  */
 @Entity
-@Table(name = "UTILIZADOR")
-@XmlRootElement
+
 @NamedQueries({
     @NamedQuery(name = "Utilizador.findAll", query = "SELECT u FROM Utilizador u"),
     @NamedQuery(name = "Utilizador.findByUtilizadorId", query = "SELECT u FROM Utilizador u WHERE u.utilizadorId = :utilizadorId"),
@@ -34,16 +28,19 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Utilizador.findByUtilizadorTipo", query = "SELECT u FROM Utilizador u WHERE u.utilizadorTipo = :utilizadorTipo"),
     @NamedQuery(name = "Utilizador.findByUtilizadorMorada", query = "SELECT u FROM Utilizador u WHERE u.utilizadorMorada = :utilizadorMorada"),
     @NamedQuery(name = "Utilizador.findByUtilizadorIdade", query = "SELECT u FROM Utilizador u WHERE u.utilizadorIdade = :utilizadorIdade"),
-    @NamedQuery(name = "Utilizador.findByUtilizadorPass", query = "SELECT u FROM Utilizador u WHERE u.utilizadorPass = :utilizadorPass")})
+    @NamedQuery(name = "Utilizador.findByUtilizadorPass", query = "SELECT u FROM Utilizador u WHERE u.utilizadorPass = :utilizadorPass")
+})
+
 public class Utilizador implements Serializable {
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
-    @Basic(optional = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="quinta_sequence")
+    @SequenceGenerator (name="quinta_sequence", sequenceName="S_UTILIZADOR", allocationSize = 1)
     @Column(name = "UTILIZADOR_ID")
     private BigDecimal utilizadorId;
-    @Basic(optional = false)
+
     @Column(name = "UTILIZADOR_NOME")
     private String utilizadorNome;
     @Column(name = "UTILIZADOR_TIPO")
@@ -199,25 +196,7 @@ public class Utilizador implements Serializable {
         this.fotoTrilhoList = fotoTrilhoList;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (utilizadorId != null ? utilizadorId.hashCode() : 0);
-        return hash;
-    }
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Utilizador)) {
-            return false;
-        }
-        Utilizador other = (Utilizador) object;
-        if ((this.utilizadorId == null && other.utilizadorId != null) || (this.utilizadorId != null && !this.utilizadorId.equals(other.utilizadorId))) {
-            return false;
-        }
-        return true;
-    }
 
     @Override
     public String toString() {

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Form</title>
+    <link rel="stylesheet"  href="<%=request.getContextPath()%>/css/stylelogin.css">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="author" content="Aldi Duzha" />
+        <meta name="description" content="Free Bulma Login Template, part of Awesome Bulma Templates" />
+        <meta name="keywords" content="bulma, login, page, website, template, free, awesome" />
+        <link rel="canonical" href="https://aldi.github.io/bulma-login-template/" />
+        <title>Pelos Caminhos de Portugal</title>
+        <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-social@1/bin/bulma-social.min.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css" />
+
+        <style>
+
+            html,
+            body {
+                font-family: 'Quicksand', serif;
+                font-size: 12px;
+                font-weight: 300;
+            }
+
+            html {
+                overflow-y: hidden !important;
+                background-image: url('https://www.revistarua.pt/wp-content/uploads/2020/07/Trilhos_RUA_10.jpg') !important;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+
+            .hero.is-success {
+                background: #f2f6fa;
+            }
+            .hero .nav,
+            .hero.is-success .nav {
+                -webkit-box-shadow: none;
+                box-shadow: none;
+            }
+            .box {
+                margin-top: 5rem;
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+            input {
+                font-weight: 300;
+            }
+            p {
+                font-weight: 900;
+            }
+            p.subtitle {
+                padding-top: 1rem;
+            }
+
+            a {
+                color: #fff;
+            }
+
+            a:hover {
+                color: #bababa;
+            }
+
+            .languages {
+                margin-top: 10px;
+            }
+
+            .footer-text {
+                font-weight: initial;
+            }
+
+        </style>
+    </head>
+
+
+<body>
+<section class="hero is-fullheight">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <div class="column is-4 is-offset-4">
+                <div class="box">
+                    <p class="subtitle is-4 " style= "color:white"> Registar </p>
+                    <br />
+                    <form id="login" method="post" action="/registar">
+                        <div class="field">
+                            <p class="control has-icons-left has-icons-right">
+                                <input class="input is-medium" name="Uname" id="Uname" required placeholder="Nome do Utilizador" />
+                                <span class="icon is-medium is-left">
+                      <i class="fas fa-user"></i>
+                    </span>
+
+                            </p>
+                        </div>
+                        <div class="field">
+                            <p class="control has-icons-left has-icons-right">
+                                <input class="input is-medium" name="morada" id="morada" required placeholder="Morada" />
+                                <span class="icon is-medium is-left">
+                      <i class="fas fa-home"></i>
+                    </span>
+
+                            </p>
+                        </div>
+                        <div class="field">
+                            <p class="control has-icons-left has-icons-right">
+
+                                <input class="input is-medium" type="number" min="18" step="1" oninput="validity.valid||(value='')" name="idade" id="idade" required placeholder="idade" />
+                                <span class="icon is-medium is-left">
+                      <i class="fas fa-info"></i>
+                    </span>
+
+                            </p>
+                        </div>
+
+                        <div class="field">
+                            <p class="control has-icons-left has-icons-right">
+                                <input class="input is-medium" type="password" name="Pass1" id="Pass1" placeholder="Password" />
+                                <span class="icon is-medium is-left">
+                       <i class="fas fa-lock"></i>
+                    </span>
+
+                            </p>
+                        </div>
+                        <div class="field">
+                            <p class="control has-icons-left">
+                                <input class="input is-medium" type="password" name="Pass2" id="Pass2" placeholder="Repetir Password" />
+                                <span class="icon is-small is-left">
+                      <i class="fas fa-lock"></i>
+                    </span>
+                            </p>
+                        </div>
+                        <br>
+                        <button class="button is-block is-info is-large is-fullwidth" type="submit" name="registo" id="registo">Registar</button><br />
+
+
+                    </form>
+                </div>
+
+                <div class="languages select is-small is-rounded">
+                    <select>
+                        <option selected>Portugues</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="hero-foot">
+        <div class="container has-text-centered">
+            <p class="footer-text">
+
+            </p>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

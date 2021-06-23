@@ -1,3 +1,8 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<title>Trilhos</title>
+<meta charset="UTF-8">
+
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
@@ -12,7 +17,7 @@
   }
 
   #myInput {
-    background-image: url('/css/searchicon.png');
+
     background-position: 10px 12px;
     background-repeat: no-repeat;
     width: 100%;
@@ -60,7 +65,7 @@
   /* The search field */
   #myInputs {
     box-sizing: border-box;
-    background-image: url('searchicon.png');
+
     background-position: 14px 12px;
     background-repeat: no-repeat;
     font-size: 16px;
@@ -149,37 +154,112 @@
   }
   body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 </style>
-<div class="w3-top">
-  <div class="w3-bar w3-green w3-card w3-left-align w3-large">
-    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-green" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
-    <a th:attr="onclick=|goToTrilhos('${utilizadorsession.getUtilizadorId()}')|"  class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white " id="trilho" >Trilhos</a>
-    <a th:attr="onclick=|goToAlojamento('${utilizadorsession.getUtilizadorId()}')|" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Alojamento</a>
-    <a href="/pontointeresse" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Pontos de Interesse</a>
-    <a th:attr="onclick=|goToExcursao('${utilizadorsession.getUtilizadorId()}')|" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Excursão</a>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" th:text="${utilizadorsession.getUtilizadorNome()}">Excursão</a>
+<section class="content-header" th:replace="navbar"></section>
+<body class="w3-light-grey w3-content" style="max-width:1600px">
+
+
+<!-- Sidebar/menu -->
+
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;margin-top: 50px;" id="mySidebar"><br>
+  <div class="w3-container">
+    <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
+
+    </a>
+
+    <h4><b>Pesquisar por:</b></h4>
+    <p class="w3-text-grey"></p>
   </div>
 
-  <!-- Navbar on small screens -->
-  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
-    <a href="#" class="w3-bar-item w3-button w3-padding-large">Trilhos</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large">Alojamento</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large">Pontos de Interesse</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large">Excursão</a>
+
+  <div class="w3-panel w3-large">
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Pesquisar Alojamento por nome" title="Type in a name">
+    <br>
+
+
   </div>
 
+  </div>
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px">
+
+  <!-- Header -->
+  <header id="portfolio">
+
+    <br>
+    <br>
+    <div class="w3-container">
+      <h1><b>Alojamentos</b></h1>
+
+    </div>
+
+
+    <div class="w3-row-padding w3-padding-64 w3-container">
+      <div class="responsive" th:each="alojamento: ${alojamentos}">
+        <div class="gallery">
+          <a target="_blank" th:attr="onclick=|goToAlojamentoinfo('${alojamento.getAlojamentoId()}','${utilizadorsession.getUtilizadorId()}')|" >
+
+            <img src="https://r1.ilikewallpaper.net/ipad-wallpapers/download/26516/Natural-Grove-Green-Trees-Path-ipad-wallpaper-ilikewallpaper_com.jpg" alt="Red dot" />
+            <div id="id"  class="desc" th:text= "'Nome: '+${alojamento.getAlojamentoId()}">Id</div>
+            <div class="desc" th:text= "${alojamento.getAlojamentoNome()}">Nome</div>
+            <div class="desc" th:text= "${alojamento.getAlojamentoCidade}">Localização</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Pagination -->
+
+
+
+
+  <!-- Footer -->
+
+
+
+
+  <!-- End page content -->
 </div>
+
 <script>
-  function goToTrilhos(idU){
-    document.body.innerHTML += '<form id="dynForm" action="/trilho" method="post"><input type="hidden" name="idU" value="'+idU+'"></form>';
-    document.getElementById("dynForm").submit();
+  function myFunction() {
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++) {
+      a = li[i].getElementsByTagName("a")[0];
+      txtValue = a.textContent || a.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        li[i].style.display = "";
+      } else {
+        li[i].style.display = "none";
+      }
+    }
   }
-  function goToAlojamento(idU){
-    document.body.innerHTML += '<form id="dynForm" action="/alojamento" method="post"><input type="hidden" name="idU" value="'+idU+'"></form>';
-    document.getElementById("dynForm").submit();
+  // Script to open and close sidebar
+  function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
   }
-  function goToExcursao(idU){
-    document.body.innerHTML += '<form id="dynForm" action="/excursao" method="post"><input type="hidden" name="idU" value="'+idU+'"></form>';
+
+  function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+  }
+
+  function goToAlojamentoinfo(idAlojamento, idU){
+
+    document.body.innerHTML += '<form id="dynForm" action="/alojamentoinfo" method="post"><input type="hidden" name="idAlojamento" value="'+idAlojamento+'"><input type="hidden" name="idU" value="'+idU+'"></form>';
     document.getElementById("dynForm").submit();
   }
 </script>
+
+</body>
+</html>
