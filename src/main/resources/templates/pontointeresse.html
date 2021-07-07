@@ -203,7 +203,7 @@
         <div class="gallery">
           <a target="_blank" th:attr="onclick=|goToPontoinfo('${ponto.getPontoId()}','${utilizadorsession.getUtilizadorId()}')|" >
 
-            <img src="https://www.vagamundos.pt/wp-content/uploads/2018/11/1-42.jpg" alt="Red dot" />
+            <img src="https://www.vagamundos.pt/wp-content/uploads/2018/11/1-42.jpg" style="width:303px;height:200px"/>
 
             <div class="desc" th:text= "'Nome: '+${ponto.getPontoNome()}">Nome</div>
             <div class="desc" th:text= "'Localização:' + ${ponto.getPontoCidade()} ">Localização</div>

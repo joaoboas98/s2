@@ -157,8 +157,7 @@
     <a th:attr="onclick=|goToAlojamento('${utilizadorsession.getUtilizadorId()}')|" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Alojamento</a>
     <a th:attr="onclick=|goToPontoInteresse('${utilizadorsession.getUtilizadorId()}')|" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Pontos de Interesse</a>
     <a th:attr="onclick=|goToExcursao('${utilizadorsession.getUtilizadorId()}')|" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Excursão</a>
-    <a th:attr="onclick=|goToGrupos('${utilizadorsession.getUtilizadorId()}')|" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Grupo</a>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" th:text="${utilizadorsession.getUtilizadorNome()}">Excursão</a>
+    <a li style="float:right" href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" th:text="${utilizadorsession.getUtilizadorNome()}">Excursão</a>
   </div>
 
   <!-- Navbar on small screens -->
@@ -185,10 +184,6 @@
   }
   function goToPontoInteresse(idU){
     document.body.innerHTML += '<form id="dynForm" action="/pontointeresse" method="post"><input type="hidden" name="idU" value="'+idU+'"></form>';
-    document.getElementById("dynForm").submit();
-  }
-  function goToGrupos(idU){
-    document.body.innerHTML += '<form id="dynForm" action="/grupos" method="post"><input type="hidden" name="idU" value="'+idU+'"></form>';
     document.getElementById("dynForm").submit();
   }
 

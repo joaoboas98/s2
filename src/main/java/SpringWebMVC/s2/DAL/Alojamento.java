@@ -63,7 +63,7 @@ public class Alojamento implements Serializable {
     @Basic(optional = false)
     @Column(name = "ALOJAMENTO_DESCRICAO")
     private String alojamentoDescricao;
-    @Column(name = "ALOJAMENTO_PAIS")
+    @Column(name = "PAIS")
     private String alojamentoPais;
     @ManyToMany(mappedBy = "alojamentoList")
     private List<Trilho> trilhoList;

@@ -184,7 +184,20 @@
     <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
     <a class="next" onclick="plusSlides(1)">&#10095;</a>
 </div>
+<div class="w3-row w3-padding-64">
 
+    <br>
+    <br>
+    <div class="w3-twothird w3-container" >
+        <h1 class="w3-text-teal" style="margin-left:100px;margin-right:100px">Descrição do Trilho:</h1>
+
+    </div>
+    <div class="w3-third w3-container">     <!DOCTYPE html>
+        <img th:src="${trilhosInf.getTrilhoLongitudeFim}" style="width:100%">
+
+
+    </div>
+</div>
 
 <div class="w3-main" style="margin-left:100px;margin-right:100px" >
     <!-- Work Row -->
@@ -295,10 +308,21 @@
     </div>
 
     <!-- Image of location/map -->
-    <
 
+    <input type="hidden" id="yourId" th:value="${trilhosInf.getTrilhoLongitudeInicio()}"/>
+    <input type="hidden" id="yourId1" th:value="${trilhosInf.getTrilhoLatitudeInicio()}"/>
     <!-- Footer -->
     <footer class="w3-container w3-padding-32 w3-theme-d1 w3-center">
+
+
+
+
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1FHaBazz73EvATpjRfIjAa5HIicMkUWk&callback=myMap"></script>
+
+
+
+
+
 
 
         <div style="position:relative;bottom:30px;z-index:1;" class="w3-tooltip w3-right">
@@ -309,13 +333,7 @@
     </footer>
 
     <script>
-        function myMap() {
-            var mapProp= {
-                center:new google.maps.LatLng(51.508742,-0.120850),
-                zoom:5,
-            };
-            var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-        }
+
 
 
         // Script for side navigation
