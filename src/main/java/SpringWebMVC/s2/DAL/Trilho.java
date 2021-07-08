@@ -25,53 +25,67 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ * @author Utilizador
+ */
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.List;
+import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+/**
+ *
  * @author Utilizador
  */
 @Entity
 @Table(name = "TRILHO")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Trilho.findAll", query = "SELECT t FROM Trilho t"),
-    @NamedQuery(name = "Trilho.findByTrilhoId", query = "SELECT t FROM Trilho t WHERE t.trilhoId = :trilhoId"),
-    @NamedQuery(name = "Trilho.findByTrilhoNome", query = "SELECT t FROM Trilho t WHERE t.trilhoNome = :trilhoNome"),
-    @NamedQuery(name = "Trilho.findByTrilhoCidadeInicio", query = "SELECT t FROM Trilho t WHERE t.trilhoCidadeInicio = :trilhoCidadeInicio"),
-    @NamedQuery(name = "Trilho.findByTrilhoCidadeFim", query = "SELECT t FROM Trilho t WHERE t.trilhoCidadeFim = :trilhoCidadeFim"),
-    @NamedQuery(name = "Trilho.findByTrilhoLatitudeInicio", query = "SELECT t FROM Trilho t WHERE t.trilhoLatitudeInicio = :trilhoLatitudeInicio"),
-    @NamedQuery(name = "Trilho.findByTrilhoLongitudeInicio", query = "SELECT t FROM Trilho t WHERE t.trilhoLongitudeInicio = :trilhoLongitudeInicio"),
-    @NamedQuery(name = "Trilho.findByTrilhoCpInicio", query = "SELECT t FROM Trilho t WHERE t.trilhoCpInicio = :trilhoCpInicio"),
-    @NamedQuery(name = "Trilho.findByTrilhoLatitudeFim", query = "SELECT t FROM Trilho t WHERE t.trilhoLatitudeFim = :trilhoLatitudeFim"),
-    @NamedQuery(name = "Trilho.findByTrilhoLongitudeFim", query = "SELECT t FROM Trilho t WHERE t.trilhoLongitudeFim = :trilhoLongitudeFim"),
-    @NamedQuery(name = "Trilho.findByTrilhoCpFim", query = "SELECT t FROM Trilho t WHERE t.trilhoCpFim = :trilhoCpFim"),
-    @NamedQuery(name = "Trilho.findByTrilhoDescricao", query = "SELECT t FROM Trilho t WHERE t.trilhoDescricao = :trilhoDescricao"),
-    @NamedQuery(name = "Trilho.findByTrilhoNivel", query = "SELECT t FROM Trilho t WHERE t.trilhoNivel = :trilhoNivel")
-     })
+        @NamedQuery(name = "Trilho.findAll", query = "SELECT t FROM Trilho t")
+        , @NamedQuery(name = "Trilho.findByTrilhoId", query = "SELECT t FROM Trilho t WHERE t.trilhoId = :trilhoId")
+        , @NamedQuery(name = "Trilho.findByTrilhoNome", query = "SELECT t FROM Trilho t WHERE t.trilhoNome = :trilhoNome")
+        , @NamedQuery(name = "Trilho.findByTrilhoCidadeInicio", query = "SELECT t FROM Trilho t WHERE t.trilhoCidadeInicio = :trilhoCidadeInicio")
+        , @NamedQuery(name = "Trilho.findByTrilhoCidadeFim", query = "SELECT t FROM Trilho t WHERE t.trilhoCidadeFim = :trilhoCidadeFim")
+        , @NamedQuery(name = "Trilho.findByTrilhoCapa", query = "SELECT t FROM Trilho t WHERE t.trilhoCapa = :trilhoCapa")
+        , @NamedQuery(name = "Trilho.findByTrilhoDistancia", query = "SELECT t FROM Trilho t WHERE t.trilhoDistancia = :trilhoDistancia")
+        , @NamedQuery(name = "Trilho.findByTrilhoFoto", query = "SELECT t FROM Trilho t WHERE t.trilhoFoto = :trilhoFoto")
+        , @NamedQuery(name = "Trilho.findByTrilhoDescricao", query = "SELECT t FROM Trilho t WHERE t.trilhoDescricao = :trilhoDescricao")
+        , @NamedQuery(name = "Trilho.findByTrilhoNivel", query = "SELECT t FROM Trilho t WHERE t.trilhoNivel = :trilhoNivel")
+})
 public class Trilho implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="quinta_sequence")
+    @SequenceGenerator (name="quinta_sequence", sequenceName="TRILHO_SEQ", allocationSize = 1)
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
     @Column(name = "TRILHO_ID")
     private BigDecimal trilhoId;
-    @Basic(optional = false)
     @Column(name = "TRILHO_NOME")
     private String trilhoNome;
     @Column(name = "TRILHO_CIDADE_INICIO")
     private String trilhoCidadeInicio;
     @Column(name = "TRILHO_CIDADE_FIM")
     private String trilhoCidadeFim;
-    @Column(name = "TRILHO_LATITUDE_INICIO")
-    private String trilhoLatitudeInicio;
-    @Column(name = "TRILHO_LONGITUDE_INICIO")
-    private String trilhoLongitudeInicio;
-    @Column(name = "TRILHO_CP_INICIO")
-    private String trilhoCpInicio;
-    @Column(name = "TRILHO_LATITUDE_FIM")
-    private String trilhoLatitudeFim;
-    @Column(name = "TRILHO_LONGITUDE_FIM")
-    private String trilhoLongitudeFim;
-    @Column(name = "TRILHO_CP_FIM")
-    private String trilhoCpFim;
+    @Column(name = "TRILHO_CAPA")
+    private String trilhoCapa;
+    @Column(name = "TRILHO_DISTANCIA")
+    private String trilhoDistancia;
+    @Column(name = "TRILHO_FOTO")
+    private String trilhoFoto;
     @Basic(optional = false)
     @Column(name = "TRILHO_DESCRICAO")
     private String trilhoDescricao;
@@ -81,13 +95,13 @@ public class Trilho implements Serializable {
 
 
     @JoinTable(name = "TRILHO_PONTO", joinColumns = {
-        @JoinColumn(name = "TRILHO_ID", referencedColumnName = "TRILHO_ID")}, inverseJoinColumns = {
-        @JoinColumn(name = "PONTO_ID", referencedColumnName = "PONTO_ID")})
+            @JoinColumn(name = "TRILHO_ID", referencedColumnName = "TRILHO_ID")}, inverseJoinColumns = {
+            @JoinColumn(name = "PONTO_ID", referencedColumnName = "PONTO_ID")})
     @ManyToMany
     private List<Ponto> pontoList;
     @JoinTable(name = "TRILHO_ALOJAMENTO", joinColumns = {
-        @JoinColumn(name = "TRILHO_ID", referencedColumnName = "TRILHO_ID")}, inverseJoinColumns = {
-        @JoinColumn(name = "ALOJAMENTO_ID", referencedColumnName = "ALOJAMENTO_ID")})
+            @JoinColumn(name = "TRILHO_ID", referencedColumnName = "TRILHO_ID")}, inverseJoinColumns = {
+            @JoinColumn(name = "ALOJAMENTO_ID", referencedColumnName = "ALOJAMENTO_ID")})
     @ManyToMany
     private List<Alojamento> alojamentoList;
     @OneToMany(mappedBy = "trilhoId")
@@ -96,7 +110,8 @@ public class Trilho implements Serializable {
     private List<Excursao> excursaoList;
     @OneToMany(mappedBy = "trilhoId")
     private List<FotoTrilho> fotoTrilhoList;
-
+    public Trilho() {
+    }
 
 
 
@@ -104,20 +119,13 @@ public class Trilho implements Serializable {
 
     public Trilho(BigDecimal trilhoId) {
         this.trilhoId = trilhoId;
-        this.trilhoNome = trilhoNome;
+    }
+
+    public Trilho(BigDecimal trilhoId, String trilhoDescricao, BigInteger trilhoNivel) {
+        this.trilhoId = trilhoId;
         this.trilhoDescricao = trilhoDescricao;
         this.trilhoNivel = trilhoNivel;
-
     }
-
-    public Trilho() {
-
-    }
-
-
-
-
-
 
     public BigDecimal getTrilhoId() {
         return trilhoId;
@@ -151,52 +159,28 @@ public class Trilho implements Serializable {
         this.trilhoCidadeFim = trilhoCidadeFim;
     }
 
-    public String getTrilhoLatitudeInicio() {
-        return trilhoLatitudeInicio;
+    public String getTrilhoCapa() {
+        return trilhoCapa;
     }
 
-    public void setTrilhoLatitudeInicio(String trilhoLatitudeInicio) {
-        this.trilhoLatitudeInicio = trilhoLatitudeInicio;
+    public void setTrilhoCapa(String trilhoCapa) {
+        this.trilhoCapa = trilhoCapa;
     }
 
-    public String getTrilhoLongitudeInicio() {
-        return trilhoLongitudeInicio;
+    public String getTrilhoDistancia() {
+        return trilhoDistancia;
     }
 
-    public void setTrilhoLongitudeInicio(String trilhoLongitudeInicio) {
-        this.trilhoLongitudeInicio = trilhoLongitudeInicio;
+    public void setTrilhoDistancia(String trilhoDistancia) {
+        this.trilhoDistancia = trilhoDistancia;
     }
 
-    public String getTrilhoCpInicio() {
-        return trilhoCpInicio;
+    public String getTrilhoFoto() {
+        return trilhoFoto;
     }
 
-    public void setTrilhoCpInicio(String trilhoCpInicio) {
-        this.trilhoCpInicio = trilhoCpInicio;
-    }
-
-    public String getTrilhoLatitudeFim() {
-        return trilhoLatitudeFim;
-    }
-
-    public void setTrilhoLatitudeFim(String trilhoLatitudeFim) {
-        this.trilhoLatitudeFim = trilhoLatitudeFim;
-    }
-
-    public String getTrilhoLongitudeFim() {
-        return trilhoLongitudeFim;
-    }
-
-    public void setTrilhoLongitudeFim(String trilhoLongitudeFim) {
-        this.trilhoLongitudeFim = trilhoLongitudeFim;
-    }
-
-    public String getTrilhoCpFim() {
-        return trilhoCpFim;
-    }
-
-    public void setTrilhoCpFim(String trilhoCpFim) {
-        this.trilhoCpFim = trilhoCpFim;
+    public void setTrilhoFoto(String trilhoFoto) {
+        this.trilhoFoto = trilhoFoto;
     }
 
     public String getTrilhoDescricao() {
@@ -211,55 +195,8 @@ public class Trilho implements Serializable {
         return trilhoNivel;
     }
 
-
-
     public void setTrilhoNivel(BigInteger trilhoNivel) {
         this.trilhoNivel = trilhoNivel;
-    }
-
-    @XmlTransient
-    public List<Ponto> getPontoList() {
-        return pontoList;
-    }
-
-    public void setPontoList(List<Ponto> pontoList) {
-        this.pontoList = pontoList;
-    }
-
-    @XmlTransient
-    public List<Alojamento> getAlojamentoList() {
-        return alojamentoList;
-    }
-
-    public void setAlojamentoList(List<Alojamento> alojamentoList) {
-        this.alojamentoList = alojamentoList;
-    }
-
-    @XmlTransient
-    public List<ClassTrilho> getClassTrilhoList() {
-        return classTrilhoList;
-    }
-
-    public void setClassTrilhoList(List<ClassTrilho> classTrilhoList) {
-        this.classTrilhoList = classTrilhoList;
-    }
-
-    @XmlTransient
-    public List<Excursao> getExcursaoList() {
-        return excursaoList;
-    }
-
-    public void setExcursaoList(List<Excursao> excursaoList) {
-        this.excursaoList = excursaoList;
-    }
-
-    @XmlTransient
-    public List<FotoTrilho> getFotoTrilhoList() {
-        return fotoTrilhoList;
-    }
-
-    public void setFotoTrilhoList(List<FotoTrilho> fotoTrilhoList) {
-        this.fotoTrilhoList = fotoTrilhoList;
     }
 
     @Override
@@ -284,8 +221,7 @@ public class Trilho implements Serializable {
 
     @Override
     public String toString() {
-        return "SpringWebMVC.s2.DAL.Trilho[ trilhoId=" + trilhoId + " ]";
+        return "projeto2trilho.DAL.Trilho[ trilhoId=" + trilhoId + " ]";
     }
-
 
 }

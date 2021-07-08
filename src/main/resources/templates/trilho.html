@@ -202,7 +202,7 @@
             <div class="responsive" th:each="trilho: ${trilhos}">
                 <div class="gallery">
                     <a target="_blank" th:attr="onclick=|goToTrilhosinfo('${trilho.getTrilhoId()}','${utilizadorsession.getUtilizadorId()}')|" >
-                        <img th:src="${trilho.getTrilhoLatitudeFim}" style="width:303px;height:200px">
+                        <img th:src="${trilho.getTrilhoCapa()}" style="width:303px;height:200px">
                         <div class="desc" th:text= "'Nome: '+${trilho.getTrilhoNome()}">Nome</div>
                         <div class="desc" th:text= "'Rota:' + ${trilho.getTrilhoCidadeInicio} + '-' +  ${trilho.getTrilhoCidadeFim} ">Localização</div>
                     </a>
