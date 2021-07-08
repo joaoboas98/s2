@@ -63,8 +63,10 @@ public class Alojamento implements Serializable {
     @Basic(optional = false)
     @Column(name = "ALOJAMENTO_DESCRICAO")
     private String alojamentoDescricao;
-    @Column(name = "PAIS")
+    @Column(name = "ALOJAMENTO_PAIS")
     private String alojamentoPais;
+    @Column(name = "ALOJAMENTO_CAPA")
+    private String alojamentoCapa;
     @ManyToMany(mappedBy = "alojamentoList")
     private List<Trilho> trilhoList;
     @OneToMany(mappedBy = "alojamentoId")
@@ -150,6 +152,14 @@ public class Alojamento implements Serializable {
 
     public void setAlojamentoPais(String alojamentoPais) {
         this.alojamentoPais = alojamentoPais;
+    }
+
+    public String getAlojamentoCapa() {
+        return alojamentoCapa;
+    }
+
+    public void setAlojamentoCapa(String alojamentoCapa) {
+        this.alojamentoCapa = alojamentoCapa;
     }
 
     @XmlTransient
