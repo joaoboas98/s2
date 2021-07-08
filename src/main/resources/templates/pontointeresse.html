@@ -254,7 +254,7 @@
     document.getElementById("myOverlay").style.display = "none";
   }
 
-  function goToTrilhosinfo(idTrilho, idU){
+  function goToToPontoinfo(idTrilho, idU){
 
     document.body.innerHTML += '<form id="dynForm" action="/trilhoinfo" method="post"><input type="hidden" name="idTrilho" value="'+idTrilho+'"><input type="hidden" name="idU" value="'+idU+'"></form>';
     document.getElementById("dynForm").submit();

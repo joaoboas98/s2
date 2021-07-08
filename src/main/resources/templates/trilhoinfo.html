@@ -173,7 +173,7 @@
 
 
 <!-- Slideshow container -->
-<div class="slideshow-container">
+<div class="slideshow-container" style="width:100%;height:400px">
 
     <!-- Full-width images with number and caption text -->
     <div class="mySlides" th:each="fotos: ${fotoTrilho}" th:if="${trilhosInf.getTrilhoId()}==${fotos.getTrilhoId().getTrilhoId()}">
@@ -184,7 +184,25 @@
     <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
     <a class="next" onclick="plusSlides(1)">&#10095;</a>
 </div>
-
+<div class="w3-row w3-padding-64">
+    <h1 class="w3-text-teal" style="margin-left:100px;margin-right:100px;color: black" th:text= "${trilhosInf.getTrilhoNome()}"/>
+    <br>
+    <br>
+    <div class="w3-twothird w3-container" >
+        <br>
+        <h1 class="w3-text-teal" style="margin-left:100px;margin-right:100px">Rota:</h1>
+        <p th:text= " ${trilhosInf.getTrilhoCidadeInicio()}+'-'+${trilhosInf.getTrilhoCidadeFim()}" style="margin-left:100px;margin-right:100px"></p>
+        <h1 class="w3-text-teal" style="margin-left:100px;margin-right:100px">Distância:</h1>
+        <p th:text= " ${trilhosInf.getTrilhoDistancia()}" style="margin-left:100px;margin-right:100px"></p>
+        <h1 class="w3-text-teal" style="margin-left:100px;margin-right:100px">Dificuldade:</h1>
+        <p th:text= " ${trilhosInf.getTrilhoNivel()}" style="margin-left:100px;margin-right:100px"></p>
+        <h1 class="w3-text-teal" style="margin-left:100px;margin-right:100px">Descrição do Trilho:</h1>
+        <p th:text= " ${trilhosInf.getTrilhoDescricao()}" style="margin-left:100px;margin-right:100px"></p>
+    </div>
+    <div class="w3-third w3-container">     <!DOCTYPE html>
+        <img th:src="${trilhosInf.getTrilhoFoto()}" style="width:100%">
+    </div>
+</div>
 
 <div class="w3-main" style="margin-left:100px;margin-right:100px" >
     <!-- Work Row -->
@@ -296,45 +314,8 @@
 
     <!-- Image of location/map -->
 
-    <input type="hidden" id="yourId" th:value="${trilhosInf.getTrilhoLongitudeInicio()}"/>
-    <input type="hidden" id="yourId1" th:value="${trilhosInf.getTrilhoLatitudeInicio()}"/>
     <!-- Footer -->
     <footer class="w3-container w3-padding-32 w3-theme-d1 w3-center">
-        <!DOCTYPE html>
-        <html>
-
-        <head>
-            <script src = "https://maps.googleapis.com/maps/api/js"></script>
-
-            <script>
-                function loadMap() {
-                    var val = $("#yourId").val();
-                    var val1 = $("#yourId1").val();
-                    var mapOptions = {
-                        center:new google.maps.LatLng(val1, val),
-                        zoom:7
-                    }
-
-                    var map = new google.maps.Map(document.getElementById("sample"),mapOptions);
-                    window.alert(val);
-                    window.alert(val1);
-                    var marker = new google.maps.Marker({
-                        position: new google.maps.LatLng(val1,val),
-                        map: map,
-                    });
-                }
-            </script>
-
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1FHaBazz73EvATpjRfIjAa5HIicMkUWk&callback=myMap"></script>
-        </head>
-
-        <body onload = "loadMap()">
-        <div id = "sample" style = "width:580px; height:400px;"></div>
-        </body>
-
-        </html>
-
-
         <div style="position:relative;bottom:30px;z-index:1;" class="w3-tooltip w3-right">
             <span class="w3-text w3-padding w3-teal w3-hide-small">Go To Top</span>
             <a class="w3-button w3-theme" href="#myPage"><span class="w3-xlarge">
